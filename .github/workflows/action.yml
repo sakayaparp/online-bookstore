@@ -1,7 +1,7 @@
 name: Bookstore Workflow
 on: [push]
 jobs:
-  test:
+  lint:
     runs-on: ubuntu-latest
     steps:
     - name: "Checkout"
@@ -21,6 +21,7 @@ jobs:
 
     - name: Install dependencies
       run: |
+        npm install
         npm ci
         npx lerna bootstrap
 
