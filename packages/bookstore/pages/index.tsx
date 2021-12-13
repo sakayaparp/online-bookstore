@@ -1,9 +1,9 @@
+import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
@@ -19,17 +19,10 @@ export default function Home() {
 
         <p className={styles.description}>
           Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+          <code className={styles.code}>pages/index.tsx</code>
         </p>
 
         <div className={styles.grid}>
-          <Link href="/about">
-            <a className={styles.card}>
-              <h2>About Page &rarr;</h2>
-              <p>Cypress will test if this link is working.</p>
-            </a>
-          </Link>
-
           <a href="https://nextjs.org/docs" className={styles.card}>
             <h2>Documentation &rarr;</h2>
             <p>Find in-depth information about Next.js features and API.</p>
@@ -75,3 +68,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default Home
