@@ -1,6 +1,11 @@
 version: '3.1'
 
 services:
+  bookstore:
+    build:
+      context: packages/bookstore
+    ports:
+      - "3000:3000"
   db:
     image: postgres
     restart: always
