@@ -14,13 +14,17 @@
     "pg-hstore": "^2.3.4",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "sequelize": "^6.12.0-beta.3"
+    "sequelize": "^6.12.0-beta.3",
+    "ts-jest": "^27.1.1"
   },
   "devDependencies": {
+    "@types/jest": "^27.0.3",
     "@types/node": "16.11.12",
     "@types/react": "17.0.37",
+    "@types/uuid": "^8.3.3",
     "eslint": "8.4.1",
     "eslint-config-next": "12.0.7",
+    "jest": "^27.4.5",
     "sequelize-cli": "^6.3.0",
     "typescript": "4.5.3"
   }
