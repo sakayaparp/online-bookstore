@@ -3,7 +3,7 @@ import {UniqueEntityID} from "../../share/domain/unique-entity-id";
 import {Item} from "./items/item";
 
 describe('Add item to cart', () => {
-    const cart = new Cart({items: []}, [])
+    const cart = Cart.create([])
     test('check size', () => {
         expect(cart.size).toBe(0);
     });
@@ -14,7 +14,7 @@ describe('Add item to cart', () => {
     });
 
     test('add same item to cart', () => {
-        const cart = new Cart({items: []}, [])
+        const cart = Cart.create([])
         const itemId = new UniqueEntityID("1")
         const item = new Item({name: "cat", amount: 1, price: 5}, itemId);
 

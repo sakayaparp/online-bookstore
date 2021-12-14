@@ -8,7 +8,7 @@ export type CartProps = {
 }
 
 export class Cart extends AggregateRoot<CartProps> {
-    public constructor(
+    private constructor(
         props: CartProps,
         domainEvents: DomainEvent[],
         id?: UniqueEntityID,
@@ -44,5 +44,14 @@ export class Cart extends AggregateRoot<CartProps> {
 
     public get size() {
         return this.props.items.length
+    }
+
+    static create = (
+        items: Item[],
+        existingId?: UniqueEntityID,
+    ): Cart => {
+        const generatedId = new UniqueEntityID();
+        const id = existingId || generatedId;
+        return new Cart({items: items}, [], id);
     }
 }

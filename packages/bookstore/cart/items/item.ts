@@ -8,7 +8,7 @@ export type ItemProps = {
 }
 
 export class Item extends Entity<ItemProps> {
-    public constructor(
+    private constructor(
         props: ItemProps,
         id?: UniqueEntityID,
     ) {
@@ -34,5 +34,16 @@ export class Item extends Entity<ItemProps> {
 
     public get amount() {
         return this.props.amount
+    }
+
+    static create = (
+        name: string,
+        amount: number,
+        price: number,
+        existingId?: UniqueEntityID,
+    ): Item => {
+        const generatedId = new UniqueEntityID();
+        const id = existingId || generatedId;
+        return new Item({name: name, amount: amount, price: price}, id);
     }
 }
