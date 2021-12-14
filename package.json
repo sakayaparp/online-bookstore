@@ -2,12 +2,18 @@
   "name": "root",
   "private": true,
   "devDependencies": {
+    "@types/jest": "^27.0.3",
     "@types/node": "16.11.12",
     "@types/react": "17.0.37",
+    "@types/uuid": "^8.3.3",
+    "concurrently": "^6.4.0",
+    "cross-env": "^7.0.3",
     "cypress": "8.2.0",
     "eslint": "8.4.1",
     "eslint-config-next": "12.0.7",
+    "jest": "^27.4.5",
     "lerna": "^4.0.0",
+    "sequelize-cli": "^6.3.0",
     "start-server-and-test": "1.13.1",
     "typescript": "4.5.3"
   },
@@ -19,6 +25,7 @@
     "lint": "lerna run lint"
   },
   "dependencies": {
-    "bookstore": "file:packages/bookstore"
+    "bookstore": "file:packages/bookstore",
+    "inventory": "file:packages/inventory"
   }
 }
