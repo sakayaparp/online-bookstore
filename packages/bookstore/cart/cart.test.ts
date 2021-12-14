@@ -9,14 +9,14 @@ describe('Add item to cart', () => {
     });
 
     test('add item to cart', () => {
-        const item = new Item({name: "cat", amount: 2, price: 5}, new UniqueEntityID("1"));
+        const item = Item.create("cat", 2, 5, new UniqueEntityID("1"));
         expect(cart.addItem(item).size).toBe(1);
     });
 
     test('add same item to cart', () => {
         const cart = Cart.create([])
         const itemId = new UniqueEntityID("1")
-        const item = new Item({name: "cat", amount: 1, price: 5}, itemId);
+        const item = Item.create("cat", 1, 5, itemId);
 
         expect(cart.size).toBe(0);
 
