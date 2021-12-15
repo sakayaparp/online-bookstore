@@ -4,6 +4,7 @@ import { Amount } from "../../value-object/amount";
 import { Money } from "../../value-object/money";
 import { UniqueEntityID } from "../../../../share/domain/unique-entity-id";
 import { Book } from "../../book";
+import { rejects } from "assert";
 
 export interface BookRepoInterface {
   save: (data: any) => Promise<any>;

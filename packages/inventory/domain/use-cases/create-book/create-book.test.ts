@@ -27,7 +27,7 @@ describe("use case create book test", () => {
     expect(bookRepo.save).toHaveBeenCalled();
   });
 
-  test("create book duplicate", () => {
+  test("create book duplicate", async () => {
     let bookRepo: BookRepoInterface = {
       save: jest.fn(),
       hasBookById: jest.fn(() => true),
@@ -42,11 +42,13 @@ describe("use case create book test", () => {
       description: "Lopem Lopem Lopem",
       categoryId: new UniqueEntityID("cate-1"),
     };
-    const createBook = new CreateBook(bookRepo);
-    const throwErrorMock = async () => {
-      console.warn(await createBook.execute(book));
-    };
 
-    expect(throwErrorMock).toThrowError("Duplicate ISBN key");
+    // let createBook = new CreateBook(bookRepo);
+
+    try {
+      await new CreateBook(bookRepo).execute(book);
+    } catch (error) {
+      expect(error).toEqual(new Error("Duplicate ISBN key"));
+    }
   });
 });
