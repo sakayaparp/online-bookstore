@@ -4,14 +4,14 @@ import {Item} from "./items/item";
 
 describe('Add item to cart', () => {
     test('add one item to cart', () => {
-        const cart = Cart.create([]);
+        const cart = Cart.create([], 0);
         expect(cart.size).toBe(0);
         const item = Item.create("cat", 2, 5, new UniqueEntityID("1"));
         expect(cart.addItem(item).size).toBe(1);
     });
 
     test('add same item to cart', () => {
-        const cart = Cart.create([]);
+        const cart = Cart.create([], 0);
         const itemId = new UniqueEntityID("1")
         const item = Item.create("cat", 1, 5, itemId);
 
@@ -27,7 +27,7 @@ describe('Add item to cart', () => {
     });
 
     test('add different item to cart', () => {
-        const cart = Cart.create([])
+        const cart = Cart.create([], 0)
 
         const itemId1 = new UniqueEntityID("1");
         const item1 = Item.create("cat", 1, 5, itemId1);
@@ -48,7 +48,7 @@ describe('Add item to cart', () => {
 
 describe('Remove item from cart', () => {
     test('remove item from empty cart', () => {
-        const cart = Cart.create([]);
+        const cart = Cart.create([], 0);
         expect(cart.size).toBe(0);
 
         const itemId = new UniqueEntityID("1");
@@ -59,7 +59,7 @@ describe('Remove item from cart', () => {
         const itemId = new UniqueEntityID("1")
         const item = Item.create("cat", 1, 5, itemId);
 
-        const cart = Cart.create([item]);
+        const cart = Cart.create([item], 0);
         expect(cart.size).toBe(1);
 
         expect(cart.removeItem(itemId).size).toBe(0);
@@ -69,7 +69,7 @@ describe('Remove item from cart', () => {
         const itemId = new UniqueEntityID("1")
         const item = Item.create("cat", 1, 5, itemId);
 
-        const cart = Cart.create([item]);
+        const cart = Cart.create([item], 0);
         expect(cart.size).toBe(1);
 
         expect(cart.removeItem(itemId).size).toBe(0);
@@ -83,7 +83,7 @@ describe('Remove item from cart', () => {
         const itemId2 = new UniqueEntityID("2");
         const item2 = Item.create("dog", 1, 5, itemId2);
 
-        const cart = Cart.create([item1, item2])
+        const cart = Cart.create([item1, item2], 0)
 
         expect(cart.size).toBe(2);
         expect(cart.removeItem(itemId1).size).toBe(1);
@@ -93,7 +93,7 @@ describe('Remove item from cart', () => {
 
 describe("Clear cart", () => {
     test('clear empty cart', () => {
-        const cart = Cart.create([]);
+        const cart = Cart.create([], 0);
         expect(cart.clearCart().size).toBe(0);
     });
 
@@ -104,7 +104,7 @@ describe("Clear cart", () => {
         const itemId2 = new UniqueEntityID("2");
         const item2 = Item.create("dog", 1, 5, itemId2);
 
-        const cart = Cart.create([item1, item2])
+        const cart = Cart.create([item1, item2], 0)
         expect(cart.size).toBe(2);
         expect(cart.clearCart().size).toBe(0);
     });
@@ -114,7 +114,7 @@ describe("Deduct item from cart", () => {
     test('deduct item', () => {
         const itemId = new UniqueEntityID("1")
         const item = Item.create("cat", 2, 5, itemId);
-        const cart = Cart.create([item]);
+        const cart = Cart.create([item], 0);
 
         const deductedCart = cart.deductItem(item);
         expect(deductedCart.size).toBe(1);
@@ -124,7 +124,7 @@ describe("Deduct item from cart", () => {
     test('deduct item amount equal zero', () => {
         const itemId = new UniqueEntityID("1")
         const item = Item.create("cat", 1, 5, itemId);
-        const cart = Cart.create([item]);
+        const cart = Cart.create([item], 0);
 
         const deductedCart = cart.deductItem(item);
         expect(deductedCart.size).toBe(0);
@@ -137,7 +137,7 @@ describe("Deduct item from cart", () => {
         const itemId2 = new UniqueEntityID("2");
         const item2 = Item.create("dog", 1, 5, itemId2);
 
-        const cart = Cart.create([item1, item2])
+        const cart = Cart.create([item1, item2], 0)
 
         expect(cart.size).toBe(2);
         const deductedCart = cart.deductItem(item1);
