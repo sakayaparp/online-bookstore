@@ -3,6 +3,7 @@ import { Amount } from "./value-object/amount";
 import { ISBN } from "./value-object/isbn";
 import { Money } from "./value-object/money";
 import { Name } from "./value-object/name";
+import { UniqueEntityID } from "../../share/domain/unique-entity-id";
 
 describe("Book aggregate root", () => {
   test("create book should be valid", () => {
@@ -14,6 +15,7 @@ describe("Book aggregate root", () => {
       price: Money.create({ value: 100, currency: "BTC" }),
       coverImage: "./image.jpg",
       description: "Lopem Lopem Lopem",
+      categoryId: new UniqueEntityID("cate-1"),
     };
     let book = Book.create(bookData);
     expect(bookData.ISBN).toEqual(book.isbn);
@@ -23,5 +25,6 @@ describe("Book aggregate root", () => {
     expect(bookData.price).toEqual(book.price);
     expect(bookData.coverImage).toEqual(book.coverImage);
     expect(bookData.description).toEqual(book.description);
+    expect(bookData.categoryId).toEqual(book.categoryId);
   });
 });
