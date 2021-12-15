@@ -1,4 +1,4 @@
-import { CreateBook, CreateBookDTO, BookRepoInterface } from "./create-book";
+import { CreateBook, CreateBookDTO, BookRepoInterface } from "./CreateBook";
 import { Amount } from "../../value-object/amount";
 import { ISBN } from "../../value-object/isbn";
 import { Money } from "../../value-object/money";

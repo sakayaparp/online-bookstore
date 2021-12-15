@@ -20,6 +20,7 @@
     "lint": "lerna run lint"
   },
   "dependencies": {
-    "bookstore": "file:packages/bookstore"
+    "bookstore": "file:packages/bookstore",
+    "express": "^4.17.1"
   }
 }
