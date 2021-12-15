@@ -1,25 +1,14 @@
-import {UniqueEntityID} from "../../../share/domain/unique-entity-id";
-import {Cart} from "../cart";
-
-interface CartRepoInterface {
-    getCartById: (id: UniqueEntityID) => Promise<any>;
-    save: (data: any) => Promise<any>;
-}
-
-interface ItemRepoInterface {
-    getItemById: (id: UniqueEntityID) => Promise<any>;
-}
-
-interface AddItemDTO {
-    cartId: UniqueEntityID,
-    itemId: UniqueEntityID
-}
+import {UniqueEntityID} from "../../../../share/domain/unique-entity-id";
+import {Cart} from "../../cart";
+import {AddItemDTO} from "./AddItemDTO"
+import {ItemRepo} from "../../repos/itemRepo";
+import {CartRepo} from "../../repos/cartRepo";
 
 export class AddItem {
-    private cartRepo: CartRepoInterface;
-    private itemRepo: ItemRepoInterface;
+    private cartRepo: CartRepo;
+    private itemRepo: ItemRepo;
 
-    constructor(cartRepo: CartRepoInterface, itemRepo: ItemRepoInterface) {
+    constructor(cartRepo: CartRepo, itemRepo: ItemRepo) {
         this.cartRepo = cartRepo;
         this.itemRepo = itemRepo;
     }
@@ -41,5 +30,7 @@ export class AddItem {
 
         const updatedCart = cart.addItem(item)
         await this.cartRepo.save(updatedCart);
+
+        return updatedCart;
     }
 }
