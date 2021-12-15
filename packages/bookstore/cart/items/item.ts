@@ -23,7 +23,7 @@ export class Item extends Entity<ItemProps> {
         return this.props.amount * this.props.price
     }
 
-    public updateAmount = (): Item => {
+    public increaseAmount = (): Item => {
         return new Item({
                 name: this.props.name,
                 amount: this.props.amount + 1,

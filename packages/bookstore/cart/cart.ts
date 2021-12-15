@@ -17,12 +17,13 @@ export class Cart extends AggregateRoot<CartProps> {
     }
 
     public addItem = (item: Item): Cart => {
-        if (this.getItem(item.itemId) !== undefined) {
-            const updatedItem = item.updateAmount();
-            const otherItems = this.props.items.filter(i => i.itemId !== item.itemId);
+        if (this.hasItem(item.itemId)) {
+            const updatedItem = item.increaseAmount();
+            const indexItem = this.props.items.indexOf(item);
+
             return new Cart(
                 {
-                    items: [...otherItems, updatedItem]
+                    items: this.props.items.slice(0, indexItem).concat([updatedItem], this.props.items.slice(indexItem + 1))
                 },
                 this.domainEvents,
                 this.id
@@ -38,8 +39,25 @@ export class Cart extends AggregateRoot<CartProps> {
         }
     }
 
+    public removeItem = (itemId: UniqueEntityID): Cart => {
+        const itemIndex = this.props.items.findIndex(item => item.itemId === itemId);
+        this.props.items.splice(itemIndex, 1);
+
+        return new Cart(
+            {
+                items: this.props.items
+            },
+            this.domainEvents,
+            this.id
+        )
+    }
+
     public getItem(itemId: UniqueEntityID) {
         return this.props.items.find(i => i.itemId === itemId)
+    }
+
+    public hasItem(itemId: UniqueEntityID): boolean {
+        return this.props.items.find(i => i.itemId === itemId) !== undefined
     }
 
     public get size() {
