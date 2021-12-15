@@ -52,6 +52,16 @@ export class Cart extends AggregateRoot<CartProps> {
         )
     }
 
+    public clearCart() {
+        return new Cart(
+            {
+                items: []
+            },
+            this.domainEvents,
+            this.id
+        )
+    }
+
     public getItem(itemId: UniqueEntityID) {
         return this.props.items.find(i => i.itemId === itemId)
     }

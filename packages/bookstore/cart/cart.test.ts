@@ -90,3 +90,22 @@ describe('Remove item from cart', () => {
         expect(cart.hasItem(itemId1)).toBeFalsy();
     });
 });
+
+describe("Clear cart", () => {
+    test('clear empty cart', () => {
+        const cart = Cart.create([]);
+        expect(cart.clearCart().size).toBe(0);
+    });
+
+    test('clear cart when cart not empty', () => {
+        const itemId1 = new UniqueEntityID("1");
+        const item1 = Item.create("cat", 1, 5, itemId1);
+
+        const itemId2 = new UniqueEntityID("2");
+        const item2 = Item.create("dog", 1, 5, itemId2);
+
+        const cart = Cart.create([item1, item2])
+        expect(cart.size).toBe(2);
+        expect(cart.clearCart().size).toBe(0);
+    });
+});
