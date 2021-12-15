@@ -2,6 +2,7 @@ import {AggregateRoot} from '../../share/domain/aggregate-root';
 import {UniqueEntityID} from '../../share/domain/unique-entity-id';
 import {DomainEvent} from '../../share/domain/events/domain-events';
 import {Item} from './items/item';
+import * as _ from 'lodash';
 
 export type CartProps = {
     readonly items: Item[];
@@ -18,37 +19,32 @@ export class Cart extends AggregateRoot<CartProps> {
     }
 
     public addItem = (item: Item): Cart => {
+        let updatedItems = [];
         if (this.hasItem(item.itemId)) {
             const updatedItem = item.increaseAmount();
             const indexItem = this.props.items.indexOf(item);
-
-            return new Cart(
-                {
-                    items: this.props.items.slice(0, indexItem).concat([updatedItem], this.props.items.slice(indexItem + 1)),
-                    grandTotalPrice: this.props.grandTotalPrice
-                },
-                this.domainEvents,
-                this.id
-            )
+            updatedItems = this.props.items.slice(0, indexItem).concat([updatedItem], this.props.items.slice(indexItem + 1));
         } else {
-            return new Cart(
-                {
-                    items: [...this.props.items, item],
-                    grandTotalPrice: this.props.grandTotalPrice
-                },
-                this.domainEvents,
-                this.id
-            )
+            updatedItems = [...this.props.items, item];
         }
+        return new Cart(
+            {
+                items: updatedItems,
+                grandTotalPrice: this.props.grandTotalPrice
+            },
+            this.domainEvents,
+            this.id
+        )
     }
 
     public deductItem = (item: Item): Cart => {
         const updatedItem = item.decreaseAmount();
         const indexItem = this.props.items.indexOf(item);
         if (updatedItem.amount !== 0) {
+            const updatedItems = this.props.items.slice(0, indexItem).concat([updatedItem], this.props.items.slice(indexItem + 1));
             return new Cart(
                 {
-                    items: this.props.items.slice(0, indexItem).concat([updatedItem], this.props.items.slice(indexItem + 1)),
+                    items: updatedItems,
                     grandTotalPrice: this.props.grandTotalPrice
                 },
                 this.domainEvents,
@@ -84,6 +80,10 @@ export class Cart extends AggregateRoot<CartProps> {
         )
     }
 
+    private calculateGrandTotalPrice(): number {
+        return _.sumBy(this.props.items, (item) => item.totalPrice)
+    }
+
     public getItem(itemId: UniqueEntityID) {
         return this.props.items.find(i => i.itemId === itemId)
     }
@@ -96,13 +96,18 @@ export class Cart extends AggregateRoot<CartProps> {
         return this.props.items.length
     }
 
+    public get grandTotalPrice() {
+        return this.calculateGrandTotalPrice()
+    }
+
     static create = (
         items: Item[],
-        gradTotalPrice: number,
+        existingGrandTotalPrice?: number,
         existingId?: UniqueEntityID,
     ): Cart => {
         const generatedId = new UniqueEntityID();
         const id = existingId || generatedId;
-        return new Cart({items: items, grandTotalPrice: gradTotalPrice}, [], id);
+        const grandTotalPrice = existingGrandTotalPrice || 0;
+        return new Cart({items: items, grandTotalPrice: grandTotalPrice}, [], id);
     }
 }

@@ -4,7 +4,7 @@ import {UniqueEntityID} from "../../../share/domain/unique-entity-id";
 describe('item', () => {
     test('calculate total price', () => {
         const item = Item.create("cat", 2, 5);
-        expect(item.totalPrice()).toBe(10);
+        expect(item.totalPrice).toBe(10);
     });
 
     test('increase item amount', () => {

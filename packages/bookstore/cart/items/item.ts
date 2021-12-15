@@ -19,7 +19,7 @@ export class Item extends Entity<ItemProps> {
         return this._id;
     }
 
-    public totalPrice = (): number => {
+    private calculateTotalPrice = (): number => {
         return this.props.amount * this.props.price
     }
 
@@ -43,6 +43,10 @@ export class Item extends Entity<ItemProps> {
 
     public get amount() {
         return this.props.amount
+    }
+
+    public get totalPrice() {
+        return this.calculateTotalPrice()
     }
 
     static create = (
