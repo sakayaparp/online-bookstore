@@ -6,20 +6,27 @@ interface CartRepoInterface {
     save: (data: any) => Promise<any>;
 }
 
-interface RemoveItemDTO {
+interface ItemRepoInterface {
+    getItemById: (id: UniqueEntityID) => Promise<any>;
+}
+
+interface deductItemDTO {
     cartId: UniqueEntityID,
     itemId: UniqueEntityID
 }
 
-export class RemoveItem {
+export class deductItem {
     private cartRepo: CartRepoInterface;
+    private itemRepo: ItemRepoInterface;
 
-    constructor(cartRepo: CartRepoInterface) {
+    constructor(cartRepo: CartRepoInterface, itemRepo: ItemRepoInterface) {
         this.cartRepo = cartRepo;
+        this.itemRepo = itemRepo
     }
 
-    public async execute(request: RemoveItemDTO) {
+    public async execute(request: deductItemDTO) {
         const {cartId, itemId} = request;
+        const item = await this.itemRepo.getItemById(itemId);
         let cart: Cart;
 
         try {
@@ -27,8 +34,7 @@ export class RemoveItem {
         } catch(err) {
             throw new Error("Cart not found.")
         }
-
-        const updatedCart = cart.removeItem(itemId)
+        const updatedCart = cart.deductItem(item)
         await this.cartRepo.save(updatedCart);
     }
 }

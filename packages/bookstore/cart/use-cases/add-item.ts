@@ -26,7 +26,7 @@ export class AddItem {
 
     public async execute(request: AddItemDTO) {
         const {cartId, itemId} = request;
-        const itemDetail = await this.itemRepo.getItemById(itemId);
+        const item = await this.itemRepo.getItemById(itemId);
         let cart: Cart;
 
         // get item detail from book
@@ -39,7 +39,7 @@ export class AddItem {
             cart = Cart.create([])
         }
 
-        cart.addItem(itemDetail)
-        await this.cartRepo.save(cart);
+        const updatedCart = cart.addItem(item)
+        await this.cartRepo.save(updatedCart);
     }
 }
