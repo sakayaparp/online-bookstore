@@ -2,10 +2,10 @@
 import * as express from 'express'
 import { createBookController } from '../../../domain/use-cases/create-book';
 
-const userRouter = express.Router();
+const bookRouter = express.Router();
 
-userRouter.post('/',
+bookRouter.post('/',
   (req, res) => createBookController.execute(req, res)
 );
 
-export { userRouter };
+export { bookRouter };
