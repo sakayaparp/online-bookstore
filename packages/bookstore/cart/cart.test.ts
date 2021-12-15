@@ -109,3 +109,41 @@ describe("Clear cart", () => {
         expect(cart.clearCart().size).toBe(0);
     });
 });
+
+describe("Deduct item from cart", () => {
+    test('deduct item', () => {
+        const itemId = new UniqueEntityID("1")
+        const item = Item.create("cat", 2, 5, itemId);
+        const cart = Cart.create([item]);
+
+        const deductedCart = cart.deductItem(item);
+        expect(deductedCart.size).toBe(1);
+        expect(deductedCart.getItem(itemId)?.amount).toBe(1);
+    });
+
+    test('deduct item amount equal zero', () => {
+        const itemId = new UniqueEntityID("1")
+        const item = Item.create("cat", 1, 5, itemId);
+        const cart = Cart.create([item]);
+
+        const deductedCart = cart.deductItem(item);
+        expect(deductedCart.size).toBe(0);
+    });
+
+    test('deduct item amount two items in cart', () => {
+        const itemId1 = new UniqueEntityID("1");
+        const item1 = Item.create("cat", 1, 5, itemId1);
+
+        const itemId2 = new UniqueEntityID("2");
+        const item2 = Item.create("dog", 1, 5, itemId2);
+
+        const cart = Cart.create([item1, item2])
+
+        expect(cart.size).toBe(2);
+        const deductedCart = cart.deductItem(item1);
+
+        expect(deductedCart.size).toBe(1);
+        expect(cart.hasItem(itemId1)).toBeFalsy();
+        expect(deductedCart.getItem(itemId2)?.amount).toBe(1);
+    });
+});

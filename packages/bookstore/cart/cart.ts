@@ -39,6 +39,22 @@ export class Cart extends AggregateRoot<CartProps> {
         }
     }
 
+    public deductItem = (item: Item): Cart => {
+        const updatedItem = item.decreaseAmount();
+        const indexItem = this.props.items.indexOf(item);
+        if (updatedItem.amount !== 0) {
+            return new Cart(
+                {
+                    items: this.props.items.slice(0, indexItem).concat([updatedItem], this.props.items.slice(indexItem + 1))
+                },
+                this.domainEvents,
+                this.id
+            )
+        } else {
+            return this.removeItem(item.itemId)
+        }
+    }
+
     public removeItem = (itemId: UniqueEntityID): Cart => {
         const itemIndex = this.props.items.findIndex(item => item.itemId === itemId);
         this.props.items.splice(itemIndex, 1);
