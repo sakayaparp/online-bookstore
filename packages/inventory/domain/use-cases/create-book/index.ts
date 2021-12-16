@@ -1,13 +1,9 @@
 
 import { CreateBook } from "./CreateBook";
 import { CreateBookController } from "./CreateBookController";
-import { BookRepoInterface } from "./CreateBook";
+import { userRepo } from "../../repos/"
 
-let createBookRepo: BookRepoInterface = ({
-    save: () => new Promise(() => {}),
-    hasBookById: () => false,
-})
-const createBookUseCase = new CreateBook(createBookRepo);
+const createBookUseCase = new CreateBook(userRepo);
 const createBookController = new CreateBookController(createBookUseCase);
 
 export {

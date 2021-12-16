@@ -1,4 +1,6 @@
-import { CreateBook, CreateBookDTO, BookRepoInterface } from "./CreateBook";
+import { CreateBook } from "./CreateBook";
+import { CreateBookDTO } from "./CreateBookDTO"
+import { IBookRepoInterface } from "../../repos/bookRepo"
 import { Amount } from "../../value-object/amount";
 import { ISBN } from "../../value-object/isbn";
 import { Money } from "../../value-object/money";
@@ -7,7 +9,7 @@ import { UniqueEntityID } from "../../../../share/domain/unique-entity-id";
 
 describe("use case create book test", () => {
   test("create book", () => {
-    let bookRepo: BookRepoInterface = {
+    let bookRepo: IBookRepoInterface = {
       save: jest.fn(),
       hasBookById: jest.fn(() => false),
     };
@@ -28,7 +30,7 @@ describe("use case create book test", () => {
   });
 
   test("create book duplicate", async () => {
-    let bookRepo: BookRepoInterface = {
+    let bookRepo: IBookRepoInterface = {
       save: jest.fn(),
       hasBookById: jest.fn(() => true),
     };

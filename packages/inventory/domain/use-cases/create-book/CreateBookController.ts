@@ -15,7 +15,7 @@ export class CreateBookController extends BaseController {
         let dto: CreateBookDTO = req.body as CreateBookDTO;
 
         try {
-            this.useCase.execute(dto)
+            await this.useCase.execute(dto)
             return this.created(res)
         } catch (err) {
             return this.fail(res, err)

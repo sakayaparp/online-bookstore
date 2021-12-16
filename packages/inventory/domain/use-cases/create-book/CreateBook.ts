@@ -1,17 +1,11 @@
-import { ISBN } from "../../value-object/isbn";
 import { CreateBookDTO } from "./CreateBookDTO";
 import { Book } from "../../book";
-import { rejects } from "assert";
-
-export interface BookRepoInterface {
-  save: (data: any) => Promise<any>;
-  hasBookById: (id: ISBN) => boolean;
-}
+import { IBookRepoInterface } from "../../repos/bookRepo"
 
 export class CreateBook {
-  private bookRepo: BookRepoInterface;
+  private bookRepo: IBookRepoInterface;
 
-  constructor(bookRepo: BookRepoInterface) {
+  constructor(bookRepo: IBookRepoInterface) {
     this.bookRepo = bookRepo;
   }
 
