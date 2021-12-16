@@ -2,6 +2,6 @@
 import { SequelizeBookRepo } from "./implementations/sequelizeBookRepo";
 // import models from "../../../shared/infra/database/sequelize/models";
 
-const userRepo = new SequelizeBookRepo();
+const bookRepo = new SequelizeBookRepo();
 
-export { userRepo }
+export { bookRepo }

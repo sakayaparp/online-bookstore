@@ -4,9 +4,13 @@ import { Book } from "../../book";
 
 export class SequelizeBookRepo implements IBookRepoInterface {
     public books: Book[] = []
+
+    async findAll(): Promise<Book[]> {
+        return this.books
+    }
+
     async save(data: any): Promise<any> {
         this.books.push(data)
-        console.log(this.books)
     }
 
     hasBookById(id: ISBN): boolean {

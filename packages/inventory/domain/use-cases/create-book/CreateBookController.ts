@@ -1,6 +1,6 @@
 import { BaseController } from '../../../../share/infra/http/models/BaseController'
 import * as express from 'express'
-import { CreateBook } from './CreateBook'
+import { CreateBook } from './CreateBookUseCase'
 import { CreateBookDTO } from "./CreateBookDTO";
 
 export class CreateBookController extends BaseController {
