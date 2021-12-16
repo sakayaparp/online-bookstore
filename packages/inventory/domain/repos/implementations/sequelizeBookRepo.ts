@@ -11,6 +11,7 @@ export class SequelizeBookRepo implements IBookRepoInterface {
 
     async save(data: any): Promise<any> {
         this.books.push(data)
+        console.log(this.books)
     }
 
     hasBookById(id: ISBN): boolean {
