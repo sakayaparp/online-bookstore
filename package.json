@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "bookstore": "file:packages/bookstore",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "hertzy": "^0.1.1"
   }
 }

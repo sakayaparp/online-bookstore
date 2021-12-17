@@ -4,6 +4,8 @@ import { ISBN } from "./value-object/isbn";
 import { Money } from "./value-object/money";
 import { Name } from "./value-object/name";
 import { UniqueEntityID } from "../../share/domain/unique-entity-id";
+import { IDomainEvent } from "../../share/domain/events/IDomainEvents";
+import { BookCreated } from "./events/bookCreated";
 
 export interface BookProps {
   ISBN: ISBN;
@@ -17,8 +19,8 @@ export interface BookProps {
 }
 
 export class Book extends AggregateRoot<BookProps> {
-  private constructor(props: BookProps) {
-    super(props);
+  private constructor(props: BookProps, domainEvents: IDomainEvent<Book>[], id?: UniqueEntityID) {
+    super(props, domainEvents, id);
   }
 
   public get isbn(): ISBN {
@@ -53,7 +55,16 @@ export class Book extends AggregateRoot<BookProps> {
     return this.props.categoryId;
   }
 
-  static create(book: BookProps) {
-    return new Book(book);
+  static create(props: BookProps, existingId?: UniqueEntityID) {
+    const generatedId = new UniqueEntityID();
+    const id = existingId || generatedId;
+    const book = new Book(props, [], id);
+
+    if (id === existingId) {
+      return book;
+    }
+
+    return new Book(book.props, [new BookCreated(book)], id)
+    
   }
 }

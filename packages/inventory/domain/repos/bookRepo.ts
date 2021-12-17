@@ -3,6 +3,6 @@ import { Book } from "../book"
 
 export interface IBookRepoInterface {
     findAll: () => Promise<Book[]>;
-    save: (data: any) => Promise<any>;
+    save: (data: Book) => Promise<Book>;
     hasBookById: (id: ISBN) => boolean;
 }

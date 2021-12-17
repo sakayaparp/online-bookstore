@@ -1,9 +1,9 @@
 
 import { SequelizeBookRepo } from "./implementations/sequelizeBookRepo";
-import { SequelizeOutboxRepo } from "./implementations/sequelizeOutboxRepo";
+import { SequelizeEventRepo } from "./implementations/sequelizeEventRepo";
 // import models from "../../../shared/infra/database/sequelize/models";
 
 const bookRepo = new SequelizeBookRepo();
-const outboxRepo = new SequelizeOutboxRepo();
+const eventRepo = new SequelizeEventRepo();
 
-export { bookRepo, outboxRepo }
+export { bookRepo, eventRepo }

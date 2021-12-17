@@ -3,7 +3,7 @@ import { ISBN } from "./value-object/isbn";
 
 export interface OutboxProps {
     eventName: string;
-    aggregateId: ISBN;
+    aggregateId: UniqueEntityID;
     aggregateType: string;
     payload: string;
     status: string;
@@ -18,7 +18,7 @@ export class Outbox {
         this._id = new UniqueEntityID();
     }
 
-    get aggregateId(): ISBN {
+    get aggregateId(): UniqueEntityID {
         return this.props.aggregateId;
     }
 

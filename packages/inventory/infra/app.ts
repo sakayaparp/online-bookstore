@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import { v1Router } from './http/api/v1';
+import { Poller } from './poller';
 
 const app = express();
 
@@ -13,4 +14,6 @@ const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
   console.log(`[App]: Listening on port ${port}`)
+  const poller = Poller.create()
+  poller.subscribe()
 })
