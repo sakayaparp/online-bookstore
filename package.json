@@ -30,6 +30,8 @@
   },
   "dependencies": {
     "bookstore": "file:packages/bookstore",
-    "inventory": "file:packages/inventory"
+    "inventory": "file:packages/inventory",
+    "express": "^4.17.1",
+    "hertzy": "^0.1.1"
   }
 }
