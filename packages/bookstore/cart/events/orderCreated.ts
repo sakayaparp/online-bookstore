@@ -1,21 +1,17 @@
 import { Cart } from "../cart";
-import { DomainEvent } from "../../../share/domain/events/domain-events";
+import { DomainEvents } from "../../../share/domain/events/DomainEvents";
 import { UniqueEntityID } from "../../../share/domain/unique-entity-id";
 
-export class OrderCreated implements DomainEvent {
-    private readonly _dateTimeOccurred: Date;
-    private readonly _cart: Cart;
+export class OrderCreated implements DomainEvents {
+    public dateTimeOccurred: Date;
+    public cart: Cart;
 
     constructor (cart: Cart) {
-        this._dateTimeOccurred = new Date();
-        this._cart = cart;
+        this.dateTimeOccurred = new Date();
+        this.cart = cart;
     }
 
     getAggregateId (): UniqueEntityID {
-        return this._cart.id;
-    }
-
-    get dateTimeOccurred() {
-        return this._dateTimeOccurred;
+        return this.cart.id;
     }
 }

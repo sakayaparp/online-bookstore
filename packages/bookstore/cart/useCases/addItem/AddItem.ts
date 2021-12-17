@@ -1,14 +1,14 @@
 import {UniqueEntityID} from "../../../../share/domain/unique-entity-id";
 import {Cart} from "../../cart";
 import {AddItemDTO} from "./AddItemDTO"
-import {ItemRepo} from "../../repos/itemRepo";
-import {CartRepo} from "../../repos/cartRepo";
+import {IItemRepo} from "../../repos/itemRepo";
+import {ICartRepo} from "../../repos/cartRepo";
 
 export class AddItem {
-    private cartRepo: CartRepo;
-    private itemRepo: ItemRepo;
+    private cartRepo: ICartRepo;
+    private itemRepo: IItemRepo;
 
-    constructor(cartRepo: CartRepo, itemRepo: ItemRepo) {
+    constructor(cartRepo: ICartRepo, itemRepo: IItemRepo) {
         this.cartRepo = cartRepo;
         this.itemRepo = itemRepo;
     }

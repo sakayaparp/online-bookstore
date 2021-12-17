@@ -1,7 +1,7 @@
-import {CartRepo} from "./implementations/cartRepo"
-import {ItemRepo} from "./implementations/itemRepo";
+import {SequelizeCartRepo} from "./implementations/sequelizeCartRepo"
+import {SequelizeItemRepo} from "./implementations/sequelizeItemRepo";
 
-const cartRepo = new CartRepo([]);
-const itemRepo = new ItemRepo([]);
+const cartRepo = new SequelizeCartRepo();
+const itemRepo = new SequelizeItemRepo();
 
 export {cartRepo, itemRepo}
