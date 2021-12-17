@@ -10,7 +10,13 @@ export class SequelizeItemRepo implements IItemRepo {
         console.log("[REPO ItemRepo]", data)
     }
 
-    public async getItemById(itemId: UniqueEntityID) {
-
+    public async getItemById(itemId: UniqueEntityID): Promise<Item | undefined> {
+        let item: Item;
+        item = this.items.find(v => {
+            if (v.itemId.equals(itemId)) {
+                return v
+            }
+        })
+        return item
     }
 }

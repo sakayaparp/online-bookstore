@@ -1,6 +1,6 @@
 import {AggregateRoot} from '../../share/domain/aggregate-root';
 import {UniqueEntityID} from '../../share/domain/unique-entity-id';
-import {IDomainEvent} from '../../share/domain/events/IDomainEvent';
+import { IDomainEvent } from "../../share/domain/events/IDomainEvents";
 import {Item} from './items/item';
 import * as _ from 'lodash';
 
@@ -12,7 +12,7 @@ export type CartProps = {
 export class Cart extends AggregateRoot<CartProps> {
     private constructor(
         props: CartProps,
-        domainEvents: IDomainEvent[],
+        domainEvents: IDomainEvent<any>[],
         id?: UniqueEntityID,
     ) {
         super(props, domainEvents, id);

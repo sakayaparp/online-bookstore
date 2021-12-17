@@ -1,9 +1,8 @@
 import {AddItem} from "./AddItem";
-import {NextApiRequest, NextApiResponse} from "next";
+import express from 'express'
 import {AddItemDTO} from "./AddItemDTO";
-import { Request, Response } from "express-serve-static-core";
-import { ParsedQs } from "qs";
 import {BaseController} from "../../../../share/infra/http/models/BaseController";
+import {UniqueEntityID} from "../../../../share/domain/unique-entity-id";
 
 export class AddItemController extends BaseController {
     private useCase: AddItem;
@@ -13,15 +12,21 @@ export class AddItemController extends BaseController {
         this.useCase = useCase;
     }
 
-    async executeImpl(req: Request<{}, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>, number>): Promise<any> {
-        console.log("body", req.body)
+    async executeImpl(req: express.Request, res: express.Response): Promise<any> {
         const {cartId, itemId} = req.body;
         const dto: AddItemDTO = {
-            cartId: cartId,
-            itemId: itemId
+            cartId: new UniqueEntityID(cartId),
+            itemId: new UniqueEntityID(itemId)
         }
 
-        const result = await this.useCase.execute(dto);
-        return res.status(200).json(result)
+        let result;
+
+        try {
+            result = await this.useCase.execute(dto);
+        } catch (err) {
+            this.fail(res, err)
+        }
+        console.log("[CART]", result.props.items);
+        return this.ok(res)
     }
 }

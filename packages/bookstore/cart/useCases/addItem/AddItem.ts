@@ -1,4 +1,3 @@
-import {UniqueEntityID} from "../../../../share/domain/unique-entity-id";
 import {Cart} from "../../cart";
 import {AddItemDTO} from "./AddItemDTO"
 import {IItemRepo} from "../../repos/itemRepo";
@@ -16,15 +15,20 @@ export class AddItem {
     public async execute(request: AddItemDTO) {
         const {cartId, itemId} = request;
         const item = await this.itemRepo.getItemById(itemId);
+
+        if (item === undefined) {
+            throw new Error("Item not found");
+        }
+
         let cart: Cart;
 
         // get item detail from book
         // add check stock
         // amount define
 
-        try {
-            cart = await this.cartRepo.getCartById(cartId);
-        } catch(err) {
+        cart = await this.cartRepo.getCartById(cartId);
+
+        if (cart === undefined) {
             cart = Cart.create([])
         }
 

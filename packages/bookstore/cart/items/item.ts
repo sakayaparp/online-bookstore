@@ -15,7 +15,7 @@ export class Item extends Entity<ItemProps> {
         super(props, id);
     }
 
-    public get itemId() {
+    public get itemId(): UniqueEntityID {
         return this._id;
     }
 
