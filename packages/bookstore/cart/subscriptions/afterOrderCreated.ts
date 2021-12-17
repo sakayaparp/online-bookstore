@@ -25,5 +25,5 @@ export class AfterOrderCreated implements IHandle<OrderCreated> {
         } catch (err) {
             console.log(`[AfterUserCreated]: Failed to execute CreateMember use case AfterUserCreated.`)
         }
-    }
+    }s
 }

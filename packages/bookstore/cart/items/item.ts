@@ -50,13 +50,11 @@ export class Item extends Entity<ItemProps> {
     }
 
     static create = (
-        name: string,
-        amount: number,
-        price: number,
+        props: ItemProps,
         existingId?: UniqueEntityID,
     ): Item => {
         const generatedId = new UniqueEntityID();
         const id = existingId || generatedId;
-        return new Item({name: name, amount: amount, price: price}, id);
+        return new Item(props, id);
     }
 }

@@ -10,8 +10,8 @@ export class Poller {
         eventRepo.events.forEach(event => {
             if (event.status === "CREATED") {
                 this.book.emit(event.name, event)
-                console.log("PUBLISHED EVENT", event)
                 event.status = "DISPATCHED"
+                console.log(`[PUBLISH ${event.name}]`, event)
             }
         })
     }
