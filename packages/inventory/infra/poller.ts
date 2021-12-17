@@ -1,18 +1,18 @@
 import hertzy from 'hertzy'
-import { OutboxProps } from '../domain/outbox'
+import { EventProps } from '../domain/event'
+import {eventRepo} from "../domain/repos"
 
 export class Poller {
     public book = hertzy.tune('book')
     private static instance: Poller = null;
 
-    public publish(data: OutboxProps) {
-        console.log('publish naja', data)
-        this.book.emit(data.eventName, data)
-    }
-
-    public subscribe() {
-        this.book.on('Book:CREATE', (data) => {
-            console.log('sub data: ', data)
+    public publish() {
+        eventRepo.events.forEach(event => {
+            if (event.status === "CREATED") {
+                this.book.emit(event.name, event)
+                console.log("PUBLISHED EVENT", event)
+                event.status = "DISPATCHED"
+            }
         })
     }
 

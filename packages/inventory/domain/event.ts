@@ -1,7 +1,7 @@
 import { UniqueEntityID } from "../../share/domain/unique-entity-id";
 import { ISBN } from "./value-object/isbn";
 
-export interface OutboxProps {
+export interface EventProps {
     eventName: string;
     aggregateId: UniqueEntityID;
     aggregateType: string;
@@ -9,11 +9,11 @@ export interface OutboxProps {
     status: string;
 }
 
-export class Outbox {
-    private props: OutboxProps;
+export class Event {
+    private props: EventProps;
     private _id: UniqueEntityID;
 
-    private constructor (props: OutboxProps) {
+    private constructor (props: EventProps) {
         this.props = props;
         this._id = new UniqueEntityID();
     }
@@ -42,7 +42,7 @@ export class Outbox {
         return this.props.eventName;
     }
 
-    public static create(outbox: OutboxProps) {
-        return new Outbox(outbox)
+    public static create(event: EventProps) {
+        return new Event(event)
     }
 }

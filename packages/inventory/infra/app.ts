@@ -15,5 +15,8 @@ const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`[App]: Listening on port ${port}`)
   const poller = Poller.create()
-  poller.subscribe()
+  setInterval(() => {
+    console.log(new Date())
+    poller.publish()
+  }, 2000)
 })
