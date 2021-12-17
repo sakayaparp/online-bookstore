@@ -5,7 +5,7 @@ import {CreateItemDTO} from "../useCases/createItem/CreateItemDTO"
 export class AfterBookCreated {
     private createItem: CreateItemUseCase;
 
-    constructor(usecase: CreateItemUseCase) {
+    constructor(usecase: CreateItemUseCase) { // TODO: use CreateBookUseCase instead
         this.setUpSupsctiptions()
         this.createItem = usecase
     }

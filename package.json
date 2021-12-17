@@ -26,7 +26,8 @@
   ],
   "scripts": {
     "build": "lerna run build",
-    "lint": "lerna run lint"
+    "lint": "lerna run lint",
+    "start:dev": "npx ts-node server.ts"
   },
   "dependencies": {
     "bookstore": "file:packages/bookstore",

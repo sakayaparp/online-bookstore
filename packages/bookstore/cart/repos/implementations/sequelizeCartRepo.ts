@@ -5,7 +5,9 @@ import {Cart} from "../../cart"
 export class SequelizeCartRepo implements ICartRepo {
     public carts: Cart[] = [];
 
-    public async save(data: any): Promise<void> {
+    public async save(data: any): Promise<void> {        
+        const itemIndex = this.carts.findIndex(cart => cart.id.equals(data.id));
+        this.carts.splice(itemIndex, 1);
         this.carts.push(data)
     }
 

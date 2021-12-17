@@ -30,7 +30,7 @@ export class Cart extends AggregateRoot<CartProps> {
         return new Cart(
             {
                 items: updatedItems,
-                grandTotalPrice: this.props.grandTotalPrice
+                grandTotalPrice: this.calculateGrandTotalPrice(updatedItems)
             },
             this.domainEvents,
             this.id
@@ -45,7 +45,7 @@ export class Cart extends AggregateRoot<CartProps> {
             return new Cart(
                 {
                     items: updatedItems,
-                    grandTotalPrice: this.props.grandTotalPrice
+                    grandTotalPrice: this.calculateGrandTotalPrice(updatedItems)
                 },
                 this.domainEvents,
                 this.id
@@ -62,7 +62,7 @@ export class Cart extends AggregateRoot<CartProps> {
         return new Cart(
             {
                 items: this.props.items,
-                grandTotalPrice: this.props.grandTotalPrice
+                grandTotalPrice: this.calculateGrandTotalPrice(this.props.items)
             },
             this.domainEvents,
             this.id
@@ -73,15 +73,15 @@ export class Cart extends AggregateRoot<CartProps> {
         return new Cart(
             {
                 items: [],
-                grandTotalPrice: this.props.grandTotalPrice
+                grandTotalPrice: 0
             },
             this.domainEvents,
             this.id
         )
     }
 
-    private calculateGrandTotalPrice(): number {
-        return _.sumBy(this.props.items, (item) => item.totalPrice)
+    private calculateGrandTotalPrice(items: Item[]): number {
+        return _.sumBy(items, (item) => item.totalPrice)
     }
 
     public getItem(itemId: UniqueEntityID) {
@@ -89,19 +89,11 @@ export class Cart extends AggregateRoot<CartProps> {
     }
 
     public hasItem(itemId: UniqueEntityID): boolean {
-        this.props.items.find(i => {
-            console.log(itemId, i.itemId)
-            console.log(i.itemId.equals(itemId))
-        })
         return this.props.items.find(i => i.itemId.equals(itemId)) !== undefined
     }
 
     public get size() {
         return this.props.items.length
-    }
-
-    public get grandTotalPrice() {
-        return this.calculateGrandTotalPrice()
     }
 
     static create = (

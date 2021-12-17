@@ -3,7 +3,7 @@ import {UniqueEntityID} from '../../../share/domain/unique-entity-id';
 
 export type ItemProps = {
     readonly name: string;
-    readonly amount: number;
+    amount: number;
     readonly price: number;
 }
 
@@ -43,6 +43,10 @@ export class Item extends Entity<ItemProps> {
 
     public get amount() {
         return this.props.amount
+    }
+
+    public set amount(amount: number) {
+        this.props.amount = amount
     }
 
     public get totalPrice() {

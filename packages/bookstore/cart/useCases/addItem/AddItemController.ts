@@ -20,13 +20,12 @@ export class AddItemController extends BaseController {
         }
 
         let result;
-
+        
         try {
             result = await this.useCase.execute(dto);
+            return this.ok(res)
         } catch (err) {
-            this.fail(res, err)
+            return this.fail(res, err)
         }
-        console.log("[CART]", result.props.items);
-        return this.ok(res)
     }
 }
