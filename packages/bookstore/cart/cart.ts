@@ -56,7 +56,7 @@ export class Cart extends AggregateRoot<CartProps> {
     }
 
     public removeItem = (itemId: UniqueEntityID): Cart => {
-        const itemIndex = this.props.items.findIndex(item => item.itemId === itemId);
+        const itemIndex = this.props.items.findIndex(item => item.itemId.equals(itemId));
         this.props.items.splice(itemIndex, 1);
 
         return new Cart(
@@ -85,11 +85,15 @@ export class Cart extends AggregateRoot<CartProps> {
     }
 
     public getItem(itemId: UniqueEntityID) {
-        return this.props.items.find(i => i.itemId === itemId)
+        return this.props.items.find(i => i.itemId.equals(itemId))
     }
 
     public hasItem(itemId: UniqueEntityID): boolean {
-        return this.props.items.find(i => i.itemId === itemId) !== undefined
+        this.props.items.find(i => {
+            console.log(itemId, i.itemId)
+            console.log(i.itemId.equals(itemId))
+        })
+        return this.props.items.find(i => i.itemId.equals(itemId)) !== undefined
     }
 
     public get size() {

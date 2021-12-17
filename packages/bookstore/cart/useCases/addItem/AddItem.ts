@@ -33,6 +33,7 @@ export class AddItem {
         }
 
         const updatedCart = cart.addItem(item)
+        console.log("CART", cart)
         await this.cartRepo.save(updatedCart);
 
         return updatedCart;

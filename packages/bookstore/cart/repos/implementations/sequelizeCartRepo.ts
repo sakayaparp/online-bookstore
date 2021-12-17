@@ -12,7 +12,7 @@ export class SequelizeCartRepo implements ICartRepo {
     public async getCartById(cartId: UniqueEntityID): Promise<Cart | undefined> {
         let cart: Cart;
         cart = this.carts.find(v => {
-            if (v.id === cartId) {
+            if (v.id.equals(cartId)) {
                 return v
             }
         })
