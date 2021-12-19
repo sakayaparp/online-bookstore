@@ -4,6 +4,7 @@ services:
   bookstore:
     build:
       context: packages/bookstore
+    container_name: bookstore
     ports:
       - "3000:3000"
     depends_on:
@@ -24,3 +25,14 @@ services:
       POSTGRES_PASSWORD: admin
       POSTGRES_USER: admin
       POSTGRES_DB: bookstore
+  zap:
+    build:
+      context: ./packages/bookstore/zap
+      dockerfile: Zap_Dockerfile
+    container_name: zap
+    user: zap
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./packages/bookstore/zap/configs:/packages/bookstore/zap/configs
+    restart: always
