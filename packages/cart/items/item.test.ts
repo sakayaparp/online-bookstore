@@ -3,7 +3,7 @@ import {UniqueEntityID} from "../../share/domain/unique-entity-id";
 
 describe('item', () => {
     test('calculate total price', () => {
-        let itemProps = {
+        let itemProps: ItemProps = {
             name: "cat",
             amount: 2,
             price: 5,
@@ -13,13 +13,23 @@ describe('item', () => {
     });
 
     test('increase item amount', () => {
-        const item = Item.create("cat", 2, 5);
+        let itemProps: ItemProps = {
+            name: "cat",
+            amount: 2,
+            price: 5,
+        };
+        const item = Item.create(itemProps);
         const increasedItem = item.increaseAmount()
         expect(increasedItem.amount).toBe(3)
     });
 
     test('increase 2 item amount', () => {
-        const item = Item.create("cat", 2, 5);
+        let itemProps: ItemProps = {
+            name: "cat",
+            amount: 2,
+            price: 5,
+        };
+        const item = Item.create(itemProps);
         const increasedItem1 = item.increaseAmount()
         expect(increasedItem1.amount).toBe(3)
         const increasedItem2 = increasedItem1.increaseAmount()
@@ -27,7 +37,12 @@ describe('item', () => {
     });
 
     test('decrease item amount', () => {
-        const item = Item.create("cat", 2, 5);
+        let itemProps: ItemProps = {
+            name: "cat",
+            amount: 2,
+            price: 5,
+        };
+        const item = Item.create(itemProps);
         const decreasedItem = item.decreaseAmount()
         expect(decreasedItem.amount).toBe(1)
     });
