@@ -4,7 +4,7 @@
   "scripts": {
     "start:dev": "npx ts-node index.ts",
     "db:init": "sequelize-cli db:migrate:undo:all && sequelize-cli db:migrate && sequelize-cli db:seed:all",
-    "test": "jest"
+    "test": "npx jest"
   },
   "dependencies": {
     "express": "^4.17.1",
