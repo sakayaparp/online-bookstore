@@ -26,25 +26,3 @@ jobs:
 
     - name: Run lints
       run: npx lerna run lint
-
-  cypress-run:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: start server
-        run: |
-          npm run build
-          npm start
-        with:
-          working-directory: packages/bookstore
-
-      - name: Cypress run
-        uses: cypress-io/github-action@v2
-        with:
-          browser: chrome
-          headless: true
-          working-directory: packages/bookstore
