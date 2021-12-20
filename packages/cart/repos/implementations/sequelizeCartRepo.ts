@@ -1,5 +1,5 @@
 import {ICartRepo} from "../cartRepo";
-import {UniqueEntityID} from "../../../../share/domain/unique-entity-id";
+import {UniqueEntityID} from "../../../share/domain/unique-entity-id";
 import {Cart} from "../../cart"
 
 export class SequelizeCartRepo implements ICartRepo {

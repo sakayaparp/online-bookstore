@@ -1,9 +1,14 @@
-import {Item} from './item'
-import {UniqueEntityID} from "../../../share/domain/unique-entity-id";
+import {Item, ItemProps} from './item'
+import {UniqueEntityID} from "../../share/domain/unique-entity-id";
 
 describe('item', () => {
     test('calculate total price', () => {
-        const item = Item.create("cat", 2, 5);
+        let itemProps = {
+            name: "cat",
+            amount: 2,
+            price: 5,
+        };
+        const item = Item.create(itemProps);
         expect(item.totalPrice).toBe(10);
     });
 

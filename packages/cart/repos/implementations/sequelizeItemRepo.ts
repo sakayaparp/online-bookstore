@@ -1,5 +1,5 @@
 import {IItemRepo} from "../itemRepo";
-import {UniqueEntityID} from "../../../../share/domain/unique-entity-id";
+import {UniqueEntityID} from "../../../share/domain/unique-entity-id";
 import {Item} from "../../items/item"
 
 export class SequelizeItemRepo implements IItemRepo {

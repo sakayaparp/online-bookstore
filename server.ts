@@ -1,9 +1,9 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import { v1Router } from './packages/inventory/infra/http/api/v1';
-import { v1Router as v1RouterCart } from './packages/bookstore/infra/http/api/v1';
+import { v1Router as v1RouterCart } from './packages/cart/infra/http/api/v1';
 import { Poller } from './packages/inventory/infra/poller';
-import "./packages/bookstore/cart/subscriptions"
+import "./packages/cart/subscriptions"
 
 const app = express();
 

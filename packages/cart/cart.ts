@@ -1,6 +1,6 @@
-import {AggregateRoot} from '../../share/domain/aggregate-root';
-import {UniqueEntityID} from '../../share/domain/unique-entity-id';
-import { IDomainEvent } from "../../share/domain/events/IDomainEvents";
+import {AggregateRoot} from '../share/domain/aggregate-root';
+import {UniqueEntityID} from '../share/domain/unique-entity-id';
+import { IDomainEvent } from "../share/domain/events/IDomainEvents";
 import {Item} from './items/item';
 import * as _ from 'lodash';
 

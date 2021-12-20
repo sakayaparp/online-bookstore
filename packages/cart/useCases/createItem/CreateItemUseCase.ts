@@ -1,7 +1,7 @@
 import {IItemRepo} from "../../repos/itemRepo"
 import {Item} from "../../items/item"
 import {CreateItemDTO} from "./CreateItemDTO"
-import {UniqueEntityID} from "../../../../share/domain/unique-entity-id";
+import {UniqueEntityID} from "../../../share/domain/unique-entity-id";
 
 export class CreateItemUseCase {
     public itemRepo: IItemRepo;

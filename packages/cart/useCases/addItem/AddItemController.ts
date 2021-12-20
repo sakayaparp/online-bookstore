@@ -1,8 +1,8 @@
 import {AddItem} from "./AddItem";
 import express from 'express'
 import {AddItemDTO} from "./AddItemDTO";
-import {BaseController} from "../../../../share/infra/http/models/BaseController";
-import {UniqueEntityID} from "../../../../share/domain/unique-entity-id";
+import {BaseController} from "../../../share/infra/http/models/BaseController";
+import {UniqueEntityID} from "../../../share/domain/unique-entity-id";
 
 export class AddItemController extends BaseController {
     private useCase: AddItem;

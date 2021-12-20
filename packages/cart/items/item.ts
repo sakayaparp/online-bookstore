@@ -1,5 +1,5 @@
-import {Entity} from '../../../share/domain/entity';
-import {UniqueEntityID} from '../../../share/domain/unique-entity-id';
+import {Entity} from '../../share/domain/entity';
+import {UniqueEntityID} from '../../share/domain/unique-entity-id';
 
 export type ItemProps = {
     readonly name: string;

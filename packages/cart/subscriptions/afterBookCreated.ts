@@ -1,4 +1,4 @@
-import {Poller} from "../../../inventory/infra/poller"
+import {Poller} from "../../inventory/infra/poller"
 import {CreateItemUseCase} from "../useCases/createItem/CreateItemUseCase"
 import {CreateItemDTO} from "../useCases/createItem/CreateItemDTO"
 

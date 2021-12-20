@@ -1,4 +1,4 @@
-import {UniqueEntityID} from "../../../../share/domain/unique-entity-id"
+import {UniqueEntityID} from "../../../share/domain/unique-entity-id"
 
 export interface CreateItemDTO {
     name: string,
