@@ -1,2 +1,0 @@
-// infra
-import "./infra/app"

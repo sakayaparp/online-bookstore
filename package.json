@@ -38,6 +38,7 @@
   "dependencies": {
     "bookstore": "file:packages/bookstore",
     "cart": "file:packages/cart",
-    "inventory": "file:packages/inventory"
+    "inventory": "file:packages/inventory",
+    "inventory_old": "file:packages/inventory_old"
   }
 }
