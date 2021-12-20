@@ -29,73 +29,13 @@ jobs:
 
   cypress-run:
     runs-on: ubuntu-latest
-
-    services:
-      zap:
-        image: jverhoelen/owasp-zap-with-entrypoint
-        ports:
-          - 8080:8080
-
     steps:
-      - name: configure OWASP ZAP to exclude hosts of no interest
-        run: curl "http://localhost:8080/JSON/core/action/excludeFromProxy/?regex=%5E.*%28google%7Cgstatic%7Cherokucdn%7Cgetmdl%7Ccloudflare%7Ccypress%29.*"
-      - uses: actions/checkout@v1
-      - name: Install dependencies
+      - name: Checkout
+        uses: actions/checkout@v2
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          runTests: false
-      - name: Run Cypress proxied by ZAP
-        uses: cypress-io/github-action@v2
-        with:
-          browser: chrome
-          install: false
-          headless: true
-        env:
-          HTTP_PROXY: http://localhost:8080
-          HTTPS_PROXY: http://localhost:8080
-
-      - name: wait for OWASP ZAP active scan to finish
-        if: always()
-        run: |
-          curl -s 'http://localhost:8080/JSON/ascan/action/scan/?url=https%3A%2F%2Fjuice-shop.herokuapp.com%2F&recurse=true&inScopeOnly=false&scanPolicyName=&method=&postData=&contextId='
-          echo "Started OWASP ZAP active scan"
-
-          attempt_counter=0
-          max_attempts=120
-          statusResult=""
-
-          while
-            if [ ${attempt_counter} -eq ${max_attempts} ];then
-              echo "Max attempts reached, exiting with exit code 0 although OWASP ZAP active scan did not finish in time"
-              exit 0
-            fi
-
-            statusResult="$(curl -s 'http://localhost:8080/JSON/ascan/view/status/?scanId=0')"
-            echo "Current active scan status: ${statusResult}"
-
-            attempt_counter=$(($attempt_counter+1))
-            sleep 5
-
-            [[ "$statusResult" != "{\"status\":\"100\"}" ]]
-          do true; done
-
-          echo "Finished scan"
-
-      - name: download OWASP ZAP report
-        if: always()
-        run: curl "http://localhost:8080/OTHER/core/other/htmlreport/" > zap-report.html
-      - uses: actions/upload-artifact@v1
-        if: failure()
-        with:
-          name: cypress-screenshots
-          path: cypress/screenshots
-      - uses: actions/upload-artifact@v1
-        if: failure()
-        with:
-          name: cypress-videos
-          path: cypress/videos
-      - uses: actions/upload-artifact@v1
-        if: always()
-        with:
-          name: ZAP-report
-          path: zap-report.html
+          build: npm run build
+          start: npm start
