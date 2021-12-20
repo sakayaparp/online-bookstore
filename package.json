@@ -3,22 +3,28 @@
   "private": true,
   "devDependencies": {
     "@babel/core": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "@babel/preset-typescript": "^7.16.5",
+    "@testing-library/react": "^12.1.2",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.0.3",
     "@types/node": "16.11.12",
     "@types/react": "17.0.37",
     "@types/uuid": "^8.3.3",
+    "babel-jest": "^27.4.5",
     "concurrently": "^6.4.0",
     "cross-env": "^7.0.3",
     "cypress": "8.2.0",
     "eslint": "8.4.1",
     "eslint-config-next": "12.0.7",
     "express": "^4.17.1",
+    "hertzy": "^0.1.1",
     "jest": "^27.4.5",
     "lerna": "^4.0.0",
     "lodash": "^4.17.21",
     "sequelize-cli": "^6.3.0",
     "start-server-and-test": "1.13.1",
+    "ts-node": "^10.4.0",
     "typescript": "4.5.3"
   },
   "workspaces": [
@@ -31,8 +37,7 @@
   },
   "dependencies": {
     "bookstore": "file:packages/bookstore",
-    "inventory": "file:packages/inventory",
-    "express": "^4.17.1",
-    "hertzy": "^0.1.1"
+    "cart": "file:packages/cart",
+    "inventory": "file:packages/inventory"
   }
 }
