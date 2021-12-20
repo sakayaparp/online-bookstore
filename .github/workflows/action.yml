@@ -28,8 +28,7 @@ jobs:
       run: npx lerna run lint
 
   cypress-run:
-    if: "!contains(github.event.commits[0].message, '[skip ci]')"
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
 
     services:
       zap:
