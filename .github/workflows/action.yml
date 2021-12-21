@@ -3,9 +3,6 @@ on: [push]
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-    env:
-      HTTP_PROXY: http://localhost:8080
-      HTTPS_PROXY: http://localhost:8080
     steps:
       - name: "Checkout"
         uses: actions/checkout@v2
