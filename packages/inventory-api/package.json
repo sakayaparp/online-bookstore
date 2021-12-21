@@ -7,7 +7,8 @@
     "start": "node -r module-alias/register ./dist --env=production",
     "start:dev": "nodemon",
     "test": "nodemon --config ./spec/nodemon.json",
-    "test:no-reloading": "./node_modules/.bin/ts-node -r tsconfig-paths/register ./spec"
+    "test:no-reloading": "./node_modules/.bin/ts-node -r tsconfig-paths/register ./spec",
+    "db:init": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
   },
   "nodemonConfig": {
     "watch": [
@@ -70,7 +71,10 @@
     "jet-logger": "^1.0.6",
     "jsonfile": "^6.1.0",
     "module-alias": "^2.2.2",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.12.0"
   },
   "devDependencies": {
     "@types/command-line-args": "^5.2.0",
@@ -90,6 +94,7 @@
     "fs-extra": "^10.0.0",
     "jasmine": "^3.10.0",
     "nodemon": "^2.0.15",
+    "sequelize-cli": "^6.3.0",
     "supertest": "^6.1.6",
     "ts-node": "^10.4.0",
     "tsconfig-paths": "^3.12.0",
