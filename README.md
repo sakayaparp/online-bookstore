@@ -16,13 +16,20 @@ cd packages
 npx create-next-app --ts ${PACKAGE_NAME}
 ```
 
+## Create new express service
+
+```shell
+cd packages
+npx express-generator-typescript "project name (default is express-gen-ts)"
+```
+
 ## Database setup
 
 ```shell
 cd package/${PACKAGE_NAME}
 npm i --save-dev sequelize-cli
 npx sequelize-cli init
-# go to config flie and update package/${PACKAGE_NAME}/config/config.json
+# go to config file and update package/${PACKAGE_NAME}/config/config.json
 # create model by run
 npx sequelize-cli model:generate --name ${TABLE_NAME} --attributes ${FIELD:TYPE}
 npm run db:init
