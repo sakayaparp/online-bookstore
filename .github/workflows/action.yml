@@ -53,3 +53,6 @@ jobs:
           start: npm start
           wait-on: 'http://localhost:3000'
           working-directory: packages/bookstore
+        env:
+          HTTP_PROXY: http://localhost:8080
+          HTTPS_PROXY: http://localhost:8080
