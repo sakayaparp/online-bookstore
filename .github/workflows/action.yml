@@ -24,9 +24,9 @@ jobs:
           npm i
           npx lerna bootstrap
 
-      - name: Run lints
-        run: npx lerna run lint
-        timeout-minutes: 1
+      #      - name: Run lints
+      #        run: npx lerna run lint
+      #        timeout-minutes: 1
 
       - name: Run Unit Test
         run: npx lerna run test

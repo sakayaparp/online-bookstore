@@ -36,3 +36,11 @@ Resolved invalid dependencies
 cd ${ROOT_PROJECT}
 npx lerna link convert
 ```
+
+---
+
+## Opened Issues
+
+### next lint is stuck
+
+https://github.com/vercel/next.js/issues/3862
