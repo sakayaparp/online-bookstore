@@ -47,10 +47,3 @@ jobs:
 
       - name: Zap scan
         run: sh ./packages/bookstore/zap/scripts/zapScan.sh -as local
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: zap-report
-          path: http://localhost:8080/OTHER/core/other/htmlreport/
-          retention-days: 1
