@@ -20,13 +20,28 @@ jobs:
       - name: Build docker images
         run: docker-compose up -d
 
-      - name: Cypress run
+      - name: configure OWASP ZAP to exclude hosts of no interest
+        run: curl "http://localhost:8080/JSON/core/action/excludeFromProxy/?regex=%5E.*%28google%7Cgstatic%7Cherokucdn%7Cgetmdl%7Ccloudflare%7Ccypress%29.*"
+
+      - name: install cypress
         uses: cypress-io/github-action@v2
         with:
           build: npm run build
           start: npm start
+          runTests: false
           wait-on: 'http://localhost:3000'
           working-directory: packages/bookstore
+
+      - name: Cypress run through Zap proxyå
+        uses: cypress-io/github-action@v2
+        with:
+          browser: chrome
+          install: false
+          headless: true
+          working-directory: packages/bookstore
+        env:
+          HTTP_PROXY: http://localhost:8080
+          HTTPS_PROXY: http://localhost:8080
 
       - name: Zap scan
         run: sh ./packages/bookstore/zap/scripts/zapScan.sh "$@" -as local
