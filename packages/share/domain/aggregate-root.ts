@@ -6,9 +6,9 @@ export abstract class AggregateRoot<T> extends Entity<T> {
   protected readonly _domainEvents: IDomainEvent<AggregateRoot<T>>[];
 
   protected constructor(
-    props: T,
-    domainEvents: IDomainEvent<AggregateRoot<T>>[] = [],
-    id?: UniqueEntityID
+      props: T,
+      domainEvents: IDomainEvent<AggregateRoot<T>>[] = [],
+      id?: UniqueEntityID
   ) {
     super(props, id);
     this._domainEvents = domainEvents;

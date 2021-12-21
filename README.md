@@ -16,8 +16,28 @@ npm run db:init
 cd packages
 npx create-next-app --ts ${PACKAGE_NAME}
 ```
-## Run ZAP Scan (Security test)
+## Database setup
 
+```shell
+cd package/${PACKAGE_NAME}
+npm i --save-dev sequelize-cli
+npx sequelize-cli init
+# go to config flie and update package/${PACKAGE_NAME}/config/config.json
+# create model by run
+npx sequelize-cli model:generate --name ${TABLE_NAME} --attributes ${FIELD:TYPE}
+npm run db:init
+```
+
+## Troubleshooting
+
+Resolved invalid dependencies
+
+```shell
+cd ${ROOT_PROJECT}
+npx lerna link convert
+```
+
+## Run ZAP Scan (Security test)
 ```shell
 # Spawn application, zap docker 
 docker-compose up -d

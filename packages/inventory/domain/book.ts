@@ -19,7 +19,11 @@ export interface BookProps {
 }
 
 export class Book extends AggregateRoot<BookProps> {
-  private constructor(props: BookProps, domainEvents: IDomainEvent<Book>[], id?: UniqueEntityID) {
+  private constructor(
+    props: BookProps,
+    domainEvents: IDomainEvent<Book>[],
+    id?: UniqueEntityID
+  ) {
     super(props, domainEvents, id);
   }
 
@@ -64,7 +68,6 @@ export class Book extends AggregateRoot<BookProps> {
       return book;
     }
 
-    return new Book(book.props, [new BookCreated(book)], id)
-    
+    return new Book(book.props, [new BookCreated(book)], id);
   }
 }
