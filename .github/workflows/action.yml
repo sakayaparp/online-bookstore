@@ -29,3 +29,22 @@ jobs:
 
       - name: Run Unit Test
         run: npx lerna run test
+
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Install dependencies
+        run: |
+          npm i
+          npx lerna bootstrap
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          build: npm run build
+          start: npm start
+          wait-on: 'http://localhost:3000'
+          working-directory: packages/bookstore
