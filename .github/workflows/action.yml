@@ -3,6 +3,9 @@ on: [push]
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
+    env:
+      HTTP_PROXY: http://localhost:8080
+      HTTPS_PROXY: http://localhost:8080
     steps:
       - name: "Checkout"
         uses: actions/checkout@v2
@@ -24,7 +27,7 @@ jobs:
           start: npm start
           wait-on: 'http://localhost:3000'
           working-directory: packages/bookstore
-          config: HTTP_PROXY=http://localhost:8080, HTTPS_PROXY=http://localhost:8080
 
       - name: Zap scan
-        run: sh ./packages/bookstore/zap/scripts/zapScan.sh "$@" -as local
+        run: sh ./packages/bookstore/zap/scripts/zapScan.
+        sh "$@" -as local
