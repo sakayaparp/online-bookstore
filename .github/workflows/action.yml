@@ -29,5 +29,4 @@ jobs:
           working-directory: packages/bookstore
 
       - name: Zap scan
-        run: sh ./packages/bookstore/zap/scripts/zapScan.
-        sh "$@" -as local
+        run: sh ./packages/bookstore/zap/scripts/zapScan.sh "$@" -as local
