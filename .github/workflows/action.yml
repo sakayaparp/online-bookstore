@@ -14,6 +14,14 @@ jobs:
           npm i
           npx lerna bootstrap
 
+      - name: Run Unit Test
+        run: npx lerna run test
+
+      - name: Code coverage
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
   cypress-run:
     runs-on: ubuntu-latest
     steps:
@@ -47,3 +55,4 @@ jobs:
 
       - name: Zap scan
         run: sh ./packages/bookstore/zap/scripts/zapScan.sh -as local
+
