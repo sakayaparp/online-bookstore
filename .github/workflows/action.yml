@@ -46,7 +46,7 @@ jobs:
           HTTPS_PROXY: http://localhost:8080
 
       - name: Zap scan
-        run: sh ./packages/bookstore/zap/scripts/zapScan.sh "$@" -as local
+        run: sh ./packages/bookstore/zap/scripts/zapScan.sh -as local
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
