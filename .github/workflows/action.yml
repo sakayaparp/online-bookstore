@@ -47,3 +47,10 @@ jobs:
 
       - name: Zap scan
         run: sh ./packages/bookstore/zap/scripts/zapScan.sh "$@" -as local
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: zap-report
+          path: ./packages/bookstore/zap/results/zap-report.html
+          retention-days: 1
