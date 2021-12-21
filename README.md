@@ -28,3 +28,12 @@ npx sequelize-cli init
 npx sequelize-cli model:generate --name ${TABLE_NAME} --attributes ${FIELD:TYPE}
 npm run db:init
 ```
+
+## Troubleshooting
+
+Resolved invalid dependencies
+
+```shell
+cd ${ROOT_PROJECT}
+npx lerna link convert
+```
