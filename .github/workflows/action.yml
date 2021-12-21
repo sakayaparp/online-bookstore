@@ -42,7 +42,7 @@ jobs:
           npm i
           npx lerna bootstrap
       - name: build docker images
-        run: docker-compose up -d --build
+        run: docker-compose up -d
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
