@@ -52,5 +52,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: zap-report
-          path: ./packages/bookstore/zap/results/zap-report.html
+          path: http://localhost:8080/OTHER/core/other/htmlreport/
           retention-days: 1

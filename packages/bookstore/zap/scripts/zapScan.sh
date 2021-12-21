@@ -239,7 +239,7 @@ ajaxSpiderScan() {
 
   scan
 
-  curl -s "http://localhost:8080/OTHER/core/other/htmlreport/" > ${prjdir}/zap/results/zap-report.html
+  #curl -s "http://localhost:8080/OTHER/core/other/htmlreport/" > ${prjdir}/zap/results/zap-report.html
 
   echo ""
   echo "Ajax spider scan finished"
