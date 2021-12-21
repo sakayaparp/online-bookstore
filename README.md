@@ -6,8 +6,7 @@
 docker-compose up -d
 
 # init database
-cd packages/inventory
-npm run db:init
+npx lerna run db:init
 ```
 
 ## Create a new package
@@ -60,3 +59,10 @@ npm run cypress:headless
 # Run zap active scan 
 sh ./zap/scripts/zapScan.sh "$@" -as local
 ```
+---
+
+## Opened Issues
+
+### next lint is stuck
+
+https://github.com/vercel/next.js/issues/3862

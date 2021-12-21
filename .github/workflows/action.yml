@@ -1,7 +1,7 @@
 name: Bookstore Workflow
-on: [push]
+on: [ push ]
 jobs:
-  cypress-run:
+  build_and_test:
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout"
@@ -14,10 +14,18 @@ jobs:
           npm i
           npx lerna bootstrap
 
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
       - name: Build docker images
         run: docker-compose up -d
 
-      - name: install cypress
+      - name: Install cypress
         uses: cypress-io/github-action@v2
         with:
           build: npm run build
@@ -26,7 +34,7 @@ jobs:
           wait-on: 'http://localhost:3000'
           working-directory: packages/bookstore
 
-      - name: Cypress run through Zap proxyå
+      - name: Cypress run through Zap proxy
         uses: cypress-io/github-action@v2
         with:
           browser: chrome
