@@ -42,8 +42,6 @@ jobs:
         run: |
           npm i
           npx lerna bootstrap
-      - name: Build docker image
-
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
