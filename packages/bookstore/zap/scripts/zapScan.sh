@@ -32,7 +32,7 @@ usage() {
       -${green}as${reset}: ${green}A${reset}ctive ${green}S${reset}can | <shop>
 
 EOF
-  exit 1
+  exit 0
 }
 
 if [ "$2" = "local" ] ;then
