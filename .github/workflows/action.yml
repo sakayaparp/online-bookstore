@@ -29,6 +29,4 @@ jobs:
           HTTPS_PROXY: http://localhost:8080
 
       - name: Zap scan
-        run: sh ./zap/scripts/zapScan.sh "$@" -as local
-        with:
-          working-directory: packages/bookstore
+        run: sh ./packages/bookstore/zap/scripts/zapScan.sh "$@" -as local
