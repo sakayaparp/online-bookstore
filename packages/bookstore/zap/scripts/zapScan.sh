@@ -12,7 +12,8 @@ protocol=""
 host=""
 file=""
 
-prjdir="$(cd "$(dirname "$0")"/../.. && pwd)"
+# prjdir="$(cd "$(dirname "$0")"/../.. && pwd)"
+prjdir="$(pwd)"
 self=$(basename $0)
 
 usage() {
