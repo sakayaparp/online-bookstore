@@ -1,7 +1,7 @@
 name: Bookstore Workflow
-on: [push]
+on: [ push ]
 jobs:
-  lint:
+  build_and_test:
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout"
@@ -24,8 +24,9 @@ jobs:
           npm i
           npx lerna bootstrap
 
-      - name: Run lints
-        run: npx lerna run lint
+      #      - name: Run lints
+      #        run: npx lerna run lint
+      #        timeout-minutes: 1
 
       - name: Run Unit Test
         run: npx lerna run test

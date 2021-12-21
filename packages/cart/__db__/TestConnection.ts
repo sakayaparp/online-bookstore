@@ -11,4 +11,5 @@ try {
   console.log("Unable to connection to db", error);
 }
 
+
 console.log("after async");
