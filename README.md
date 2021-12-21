@@ -6,8 +6,7 @@
 docker-compose up -d
 
 # init database
-cd packages/inventory
-npm run db:init
+npx lerna run db:init
 ```
 
 ## Create a new package
