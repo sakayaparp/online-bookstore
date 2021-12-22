@@ -6,6 +6,6 @@ describe("test Table component", () => {
     const books = [{ ISBN: "9971-5-0210-0", amount: 500 }];
     render(<TableCustome thead={books[0]} tbody={books} />);
 
-    expect(screen.getByText("ISBN")).toBeIntheDocument();
+    expect(screen.getByText("ISBN")).toBeInTheDocument();
   });
 });
