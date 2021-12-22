@@ -4,7 +4,7 @@
   "scripts": {
     "start:dev": "npx ts-node index.ts",
     "test": "npx jest",
-    "db:init": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
+    "db:init": "echo 'not support yet'",
     "lint": "echo nothing"
   },
   "dependencies": {
