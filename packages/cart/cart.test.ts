@@ -1,5 +1,5 @@
 import {Cart} from './cart'
-import {UniqueEntityID} from "../../share/domain/unique-entity-id";
+import {UniqueEntityID} from "../share/domain/unique-entity-id";
 import {Item} from "./items/item";
 
 describe('Add item to cart', () => {

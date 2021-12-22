@@ -21,6 +21,7 @@ jobs:
         uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          flags: unittests
 
   cypress-run:
     runs-on: ubuntu-latest
