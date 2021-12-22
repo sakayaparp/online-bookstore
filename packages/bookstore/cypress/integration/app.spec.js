@@ -4,6 +4,6 @@ describe('Navigation', () => {
         cy.visit('/')
 
         // The new page should contain an h1 with "Welcome"
-        cy.get('h1').contains('Welcome')
+        cy.get('tbody').contains('Mock Book Name')
     })
 })
