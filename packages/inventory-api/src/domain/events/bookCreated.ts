@@ -1,6 +1,6 @@
-import { IDomainEvent, Status } from "../../../share/domain/events/IDomainEvents";
-import { UniqueEntityID } from "../../../share/domain/unique-entity-id";
-import { Book, BookProps } from "../book";
+import { Book} from "../book";
+import {IDomainEvent, Status} from "../../../../share/domain/events/IDomainEvents";
+import {UniqueEntityID} from "../../../../share/domain/unique-entity-id";
 
 export class BookCreated implements IDomainEvent<Book> {
     readonly dateTimeOccurred: Date;
