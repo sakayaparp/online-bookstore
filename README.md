@@ -37,6 +37,27 @@ npx sequelize-cli model:generate --name ${TABLE_NAME} --attributes ${FIELD:TYPE}
 npm run db:init
 ```
 
+## Kafka Setup
+
+examples of Confluent's Kafka stack could be found here: https://github.com/confluentinc/cp-docker-images
+
+### Prerequisite
+
+Configure docker-machine resources as per image below
+
+![](./docs/img/kafka_docker_resources.png)
+
+```shell
+cd ${ROOT_FOLDER}
+docker-compose -f docker-compose.kafka.yml up -d
+
+# Make sure all services are up and running, otherwise restart
+docker-compose -f docker-compose.kafka.yml ps
+
+# Open Confluent's control-center
+http://localhost:9021
+```
+
 ## Troubleshooting
 
 Resolved invalid dependencies
@@ -44,6 +65,31 @@ Resolved invalid dependencies
 ```shell
 cd ${ROOT_PROJECT}
 npx lerna link convert
+```
+
+## Run ZAP Scan (Security test)
+
+```shell
+# Spawn application, zap docker 
+docker-compose up -d
+
+cd packages/bookstore
+
+# disableAllPassiveScanner & enablePassiveScanner
+sh ./zap/scripts/zapScan.sh -eps
+
+# set proxy through ZAP
+export HTTP_PROXY=http://localhost:8080
+export HTTPS_PROXY=http://localhost:8080
+
+# disableAllActiveScanner & enableActiveScanner
+sh ./zap/scripts/zapScan.sh -eas
+
+# Run cypress through zap to get application structure
+npm run cypress:headless
+
+# Run zap active scan 
+sh ./zap/scripts/zapScan.sh "$@" -as local
 ```
 
 ---
