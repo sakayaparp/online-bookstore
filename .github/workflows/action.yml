@@ -31,10 +31,10 @@ jobs:
           fetch-depth: 0
 
       - name: Build docker images
-        run: | 
-          docker-compose up -d
-          npx lerna run db:init
+        run: docker-compose up -d
         
+      - name: Init DB
+        run: npx lerna run db:init
 
       - name: Install cypress
         uses: cypress-io/github-action@v2
@@ -56,8 +56,6 @@ jobs:
         env:
           HTTP_PROXY: http://localhost:8080
           HTTPS_PROXY: http://localhost:8080
-
-
 
       - name: Zap scan
         run: sh ./packages/bookstore/zap/scripts/zapScan.sh -as local
