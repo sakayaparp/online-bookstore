@@ -34,7 +34,9 @@ jobs:
         run: docker-compose up -d
         
       - name: Init DB
-        run: npx lerna run db:init
+        run: |
+          npm i
+          npx lerna run db:init
 
       - name: Install cypress
         uses: cypress-io/github-action@v2
