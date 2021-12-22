@@ -1,6 +1,7 @@
-import {OutboxesRepoImpl} from "implementation/OutboxesRepoImpl";
+import {OutboxesRepoImpl} from "./implementation/OutboxesRepoImpl";
+import models from "../../../../inventory-api/models"
 
 
-const bookRepo = new OutboxesRepoImpl(models.sequelize);
+const outboxRepo = new OutboxesRepoImpl(models.sequelize);
 
-export {bookRepo, eventRepo};
+export {outboxRepo};

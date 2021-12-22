@@ -1,4 +1,5 @@
 import {CronJob} from 'cron';
+import {outboxRepo} from './domain/infra/database'
 
 class Poller {
 
@@ -6,7 +7,7 @@ class Poller {
 
     constructor() {
 
-        this.cronJob = new CronJob('*/5 * * * * *', async () => {
+        this.cronJob = new CronJob('*/10 * * * * *', async () => {
             try {
                 await this.doTask();
             } catch (e) {
@@ -25,12 +26,17 @@ class Poller {
         console.log(Date.now())
 
         // Query Created Outboxes from Inventories DB
+        let events = await outboxRepo.get()
+        console.log(events)
 
-        // Publish Outboxes's payload to Kafka topic (name)
-
-        // Update Outboxes status to "dispatched"
-
-
+        if(events.length > 0) {
+            // Publish Outboxes's payload to Kafka topic (name)
+            
+            // Update Outboxes status to "dispatched"
+            outboxRepo.updateStatus(events)
+        } else {
+            console.log('no new event')
+        }
     }
 }
 

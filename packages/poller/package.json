@@ -1,0 +1,21 @@
+{
+  "name": "poller",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/cron": "^1.7.3",
+    "ts-node": "^10.4.0"
+  },
+  "dependencies": {
+    "cron": "^1.8.2",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.12.1"
+  }
+}

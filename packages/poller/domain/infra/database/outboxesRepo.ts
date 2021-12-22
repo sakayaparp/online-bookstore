@@ -1,6 +1,5 @@
-import {IDomainEvent} from "../../../../share/domain/events/IDomainEvents";
-
 export interface OutboxesRepo {
-    get: (data: IDomainEvent<any>) => Promise<any>;
+    get: () => Promise<any>;
+    updateStatus: (outboxes: any) => Promise<any>;
 }
 
