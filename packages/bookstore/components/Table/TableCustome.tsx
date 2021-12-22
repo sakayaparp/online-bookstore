@@ -14,7 +14,7 @@ const TableCustome = (props) => {
           })}
         </tr>
       </thead>
-      <tbody>
+      <tbody data-testid="table-component-tbody">
         {tbody.map((row, index) => {
           return (
             <tr key={index}>
