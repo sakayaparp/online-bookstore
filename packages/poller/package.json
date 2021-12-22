@@ -4,18 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo no test available"
+    "test": "echo no test available",
+    "start:dev": "ts-node server.ts"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/cron": "^1.7.3",
+    "@types/kafkajs": "^1.9.0",
     "ts-node": "^10.4.0"
   },
   "dependencies": {
     "cron": "^1.8.2",
+    "kafkajs": "^1.15.0",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.12.1"
+    "sequelize": "^6.12.1",
+    "uuid": "^8.3.2"
   }
 }
