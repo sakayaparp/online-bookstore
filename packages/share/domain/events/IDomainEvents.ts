@@ -3,10 +3,10 @@ import { UniqueEntityID } from "../unique-entity-id";
 
 export type Status = 'CREATED' | 'DISPATCHED'
 export interface IDomainEvent<T extends AggregateRoot<any>> {
-  aggregateId: UniqueEntityID;
-  dateTimeOccurred: Date;
+  aggregateId: string;
   name: string;
   aggregateType: string
-  payload: T,
+  payload: string,
   status: Status
+  type: string
 }
