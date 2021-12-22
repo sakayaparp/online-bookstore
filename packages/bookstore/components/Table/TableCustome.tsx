@@ -7,14 +7,14 @@ const TableCustome = (props) => {
 
   return (
     <table border="1">
-      <thead>
+      <thead data-testid="table-header">
         <tr>
           {Object.keys(thead).map((item, index) => {
             return <th key={index}>{item}</th>;
           })}
         </tr>
       </thead>
-      <tbody data-testid="table-component-tbody">
+      <tbody data-testid="table-body">
         {tbody.map((row, index) => {
           return (
             <tr key={index}>
