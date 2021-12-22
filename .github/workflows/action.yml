@@ -52,10 +52,11 @@ jobs:
           install: false
           headless: true
           working-directory: packages/bookstore
+          config: baseUrl=http://bookstore:3000
         env:
           HTTP_PROXY: http://localhost:8080
           HTTPS_PROXY: http://localhost:8080
-        config: baseUrl=http://bookstore:3000
+
 
 
       - name: Zap scan
