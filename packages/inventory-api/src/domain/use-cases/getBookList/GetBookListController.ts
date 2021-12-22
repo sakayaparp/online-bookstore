@@ -1,6 +1,6 @@
-import { BaseController } from "../../../../share/infra/http/models/BaseController";
-import * as express from 'express'
 import { GetBookListUseCase } from "./GetBookListUseCase";
+import {BaseController} from "../../../../../share/infra/http/models/BaseController";
+import { Request, Response } from 'express';
 
 export class GetBookListController extends BaseController {
     private useCase: GetBookListUseCase
@@ -10,13 +10,12 @@ export class GetBookListController extends BaseController {
         this.useCase = useCase
     }
 
-    async executeImpl (req: express.Request, res: express.Response): Promise<any> {
+    async executeImpl (req: Request, res: Response): Promise<any> {
         try {
             let books = await this.useCase.execute()
-            let dto = books.map(v => v.props)
-            return this.ok(res, dto)
+            return this.ok(res, books)
         } catch (err) {
-            return this.fail(res, err)
+            // return this.fail(res, err)
         }
     }
 }
