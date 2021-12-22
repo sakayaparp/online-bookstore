@@ -1,23 +1,21 @@
 import { Book} from "../book";
 import {IDomainEvent, Status} from "../../../../share/domain/events/IDomainEvents";
-import {UniqueEntityID} from "../../../../share/domain/unique-entity-id";
 
 export class BookCreated implements IDomainEvent<Book> {
-    readonly dateTimeOccurred: Date;
     readonly status: Status;
-    readonly payload: Book;
+    readonly payload: string;
     readonly name: string;
     readonly aggregateType: any;
-    readonly aggregateId: UniqueEntityID;
+    readonly aggregateId: string;
+    readonly type: string;
 
     constructor(book: Book) {
         
-        this.payload = book;
+        this.payload = JSON.stringify(book)
         this.status = "CREATED";
         this.name = "book:created";
         this.aggregateType = "Book";
-        this.aggregateId = book.id;
-
-        this.dateTimeOccurred = new Date();
+        this.aggregateId = book.id.toString();
+        this.type = "bookCreated"
     }
 }

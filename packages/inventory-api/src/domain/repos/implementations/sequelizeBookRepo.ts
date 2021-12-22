@@ -2,6 +2,7 @@ import {IBookRepoInterface} from "../bookRepo";
 import {ISBN} from "../../value-object/isbn";
 import {Book} from "../../book";
 import {Sequelize} from "sequelize/dist";
+import {eventRepo} from "../index";
 
 export class SequelizeBookRepo implements IBookRepoInterface {
     public books: Book[] = [];
@@ -18,9 +19,12 @@ export class SequelizeBookRepo implements IBookRepoInterface {
     async save(data: Book): Promise<Book> {
         this.sequelize.model("inventories").create(data.props)
             .then(value => {
-                // save event
-                console.log('Save book successfully')
-            })
+                data.domainEvents.forEach((v) => {
+                    eventRepo.save(v)
+                })
+            }).catch(e => {
+                console.log(e)
+        })
         // this.books.push(data);
         // data.domainEvents.forEach((v) => {
         //   eventRepo.save(v);
