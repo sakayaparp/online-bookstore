@@ -1,56 +1,35 @@
-import type {NextPage} from 'next'
-import {useEffect, useState} from "react";
+import type { NextPage } from "next";
+import { useEffect, useState } from "react";
+import TableCustome from "../components/Table/TableCustome";
 
 const Home: NextPage = () => {
-    const [books, setBook] = useState([]);
+  const [books, setBook] = useState([]);
 
-    useEffect(() => {
-        const url = "http://localhost:3001/api/books";
+  useEffect(() => {
+    const url = "http://localhost:3001/api/books";
 
-        const fetchData = async () => {
-            try {
-                const response = await fetch(url);
-                const json = await response.json();
-                console.log(json);
-                setBook(json);
-            } catch (error) {
-                console.log("error", error);
-            }
-        };
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+        const json = await response.json();
+        setBook(json);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
 
-        fetchData();
-    }, []);
+    fetchData();
+  }, []);
 
-    const renderRow = () => {
-        return books.map(book => {
-            return (
-                // eslint-disable-next-line react/jsx-key
-                <tr key={book.ISBN}>
-                    <td>{book.ISBN}</td>
-                    <td>{book.title}</td>
-                    <td>{book.authors}</td>
-                    <td>{book.amount}</td>
-                    <td>{book.price}</td>
-                    <td>{book.description}</td>
-                </tr>)
-        })
-    }
-
+  if (books.length > 0) {
     return (
-        <div>
-            <table>
-                <th>
-                    <th>ISBN</th>
-                    <th>title</th>
-                    <th>authors</th>
-                    <th>amount</th>
-                    <th>price</th>
-                    <th>description</th>
-                </th>
-                {renderRow()}
-            </table>
-        </div>
-    )
-}
+      <div>
+        <TableCustome thead={books[0]} tbody={books} />
+      </div>
+    );
+  } else {
+    return <></>;
+  }
+};
 
-export default Home
+export default Home;
