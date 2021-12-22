@@ -15,7 +15,9 @@ jobs:
           npx lerna bootstrap
 
       - name: Run Unit Test
-        run: npx lerna run test
+        run: | 
+          npm i 
+          npx lerna run test
 
       - name: Code coverage
         uses: codecov/codecov-action@v2
