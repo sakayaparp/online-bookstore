@@ -62,3 +62,9 @@ jobs:
       - name: Zap scan
         run: sh ./packages/bookstore/zap/scripts/zapScan.sh -as local
 
+      - name: Upload Zap scan report
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: ./packages/bookstore/zap/results/zap-report.html
+
