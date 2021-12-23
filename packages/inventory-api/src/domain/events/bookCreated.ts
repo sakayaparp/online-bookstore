@@ -1,5 +1,7 @@
 import { Book} from "../book";
-import {IDomainEvent, Status} from "../../../../share/domain/events/IDomainEvents";
+import {IDomainEvent, Status} from "./IDomainEvents";
+
+
 
 export class BookCreated implements IDomainEvent<Book> {
     readonly status: Status;

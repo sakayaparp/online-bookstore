@@ -1,4 +1,4 @@
-import { ValueObject } from "../../../share/domain/value-object";
+import {ValueObject} from "../../../../share/domain/value-object";
 
 export type Currency = "THB" | "USD" | "BTC";
 

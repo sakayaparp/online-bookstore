@@ -7,8 +7,8 @@ import {createBookController} from "../domain/use-cases/create-book";
 const baseRouter = Router();
 
 // eslint-disable-next-line @typescript-eslint/no-misused-promises
-baseRouter.get('/books', (req, res) => getBookListController.execute(req, res))
+baseRouter.get('/books', (req, res) => getBookListController.executeImpl(req, res))
 // eslint-disable-next-line @typescript-eslint/no-misused-promises
-baseRouter.post('/books', (req, res) => createBookController.execute(req, res))
+baseRouter.post('/books', (req, res) => createBookController.executeImpl(req, res))
 
 export default baseRouter;

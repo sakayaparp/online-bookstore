@@ -1,5 +1,6 @@
 import { Category, CategoryProps } from "./category";
-import { UniqueEntityID } from "../../share/domain/unique-entity-id";
+import {UniqueEntityID} from "./unique-entity-id";
+
 
 describe("category aggregate root", () => {
   test("create category should be valid", () => {

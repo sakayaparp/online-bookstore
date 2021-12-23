@@ -5,8 +5,7 @@ import { Amount } from "../../value-object/amount";
 import { ISBN } from "../../value-object/isbn";
 import { Money } from "../../value-object/money";
 import { Name } from "../../value-object/name";
-import { UniqueEntityID } from "../../../../share/domain/unique-entity-id";
-import { IOutboxRepo } from "../../repos/outboxRepo";
+import {UniqueEntityID} from "../../../../../share/domain/unique-entity-id";
 
 describe("use case create book test", () => {
   test("create book", () => {
@@ -15,9 +14,7 @@ describe("use case create book test", () => {
       save: jest.fn(),
       hasBookById: jest.fn(() => false),
     };
-    let outboxRepo: IOutboxRepo = {
-      save: jest.fn()
-    }
+
     let book: CreateBookDTO = {
       ISBN: ISBN.create("9971-5-0210-0"),
       title: "Mock Book Name",
@@ -28,7 +25,7 @@ describe("use case create book test", () => {
       description: "Lopem Lopem Lopem",
       categoryId: new UniqueEntityID("cate-1"),
     };
-    const createBook = new CreateBook(bookRepo, outboxRepo);
+    const createBook = new CreateBook(bookRepo);
 
     createBook.execute(book);
     expect(bookRepo.save).toHaveBeenCalled();
@@ -40,9 +37,7 @@ describe("use case create book test", () => {
       save: jest.fn(),
       hasBookById: jest.fn(() => true),
     };
-    let outboxRepo: IOutboxRepo = {
-      save: jest.fn()
-    }
+
     let book: CreateBookDTO = {
       ISBN: ISBN.create("9971-5-0210-0"),
       title: "Mock Book Name",
@@ -55,7 +50,7 @@ describe("use case create book test", () => {
     };
 
     try {
-      await new CreateBook(bookRepo, outboxRepo).execute(book);
+      await new CreateBook(bookRepo).execute(book);
     } catch (error) {
       expect(error).toEqual(new Error("Duplicate ISBN key"));
     }

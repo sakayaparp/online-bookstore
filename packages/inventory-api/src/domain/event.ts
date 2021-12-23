@@ -1,5 +1,4 @@
-import { UniqueEntityID } from "../../share/domain/unique-entity-id";
-import { ISBN } from "./value-object/isbn";
+import {UniqueEntityID} from "../../../share/domain/unique-entity-id";
 
 export interface EventProps {
     eventName: string;

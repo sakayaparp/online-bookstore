@@ -1,7 +1,6 @@
 import {CreateBook} from './CreateBookUseCase'
-import {BaseController} from "../../../../../share/infra/http/models/BaseController";
 import {Request, Response} from 'express';
-import {CreateBookDTO} from "./CreateBookDTO";
+import {BaseController} from "../../../infra/http/models/BaseController";
 
 export class CreateBookController extends BaseController {
     private useCase: CreateBook;
@@ -12,7 +11,6 @@ export class CreateBookController extends BaseController {
     }
 
     async executeImpl(req: Request, res: Response): Promise<any> {
-        let dto: CreateBookDTO = req.body as CreateBookDTO;
         try {
             await this.useCase.execute(req.body)
             return this.created(res)

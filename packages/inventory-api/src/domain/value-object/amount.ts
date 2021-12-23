@@ -1,4 +1,5 @@
-import { ValueObject } from "../../../share/domain/value-object";
+import {ValueObject} from "../../../../share/domain/value-object";
+
 
 interface AmountProps {
   value: number;

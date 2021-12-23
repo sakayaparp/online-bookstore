@@ -1,5 +1,6 @@
-import { AggregateRoot } from "../../share/domain/aggregate-root";
-import { UniqueEntityID } from "../../share/domain/unique-entity-id";
+import {UniqueEntityID} from "../../../share/domain/unique-entity-id";
+import {AggregateRoot} from "../../../share/domain/aggregate-root";
+
 
 export interface CategoryProps {
   name: string;

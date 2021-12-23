@@ -1,6 +1,6 @@
 import { GetBookListUseCase } from "./GetBookListUseCase";
-import {BaseController} from "../../../../../share/infra/http/models/BaseController";
 import { Request, Response } from 'express';
+import {BaseController} from "../../../infra/http/models/BaseController";
 
 export class GetBookListController extends BaseController {
     private useCase: GetBookListUseCase

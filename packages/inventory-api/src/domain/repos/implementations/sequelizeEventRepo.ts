@@ -1,7 +1,6 @@
-import { IDomainEvent } from "../../../../../share/domain/events/IDomainEvents";
-import { Event, EventProps } from "../../event";
 import { IEventRepo } from "../eventRepo";
 import {Sequelize} from "sequelize";
+import {IDomainEvent} from "../../events/IDomainEvents";
 
 export class SequelizeEventRepo implements IEventRepo {
   public events: IDomainEvent<any>[] = [];

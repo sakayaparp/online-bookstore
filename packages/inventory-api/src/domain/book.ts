@@ -3,9 +3,9 @@ import {ISBN} from "./value-object/isbn";
 import {Money} from "./value-object/money";
 import {Name} from "./value-object/name";
 import {BookCreated} from "./events/bookCreated";
-import {UniqueEntityID} from "../../../share/domain/unique-entity-id";
-import {AggregateRoot} from "../../../share/domain/aggregate-root";
-import {IDomainEvent} from "../../../share/domain/events/IDomainEvents";
+import {UniqueEntityID} from "./unique-entity-id";
+import {AggregateRoot} from "./aggregate-root";
+import {IDomainEvent} from "./events/IDomainEvents";
 
 export interface BookProps {
     ISBN: ISBN;
