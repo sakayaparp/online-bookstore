@@ -2,9 +2,10 @@
   "name": "bookstore",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "start:dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "start:docker": "NODE_ENV=test next start",
     "lint": "next lint",
     "cypress": "cypress open",
     "cypress:headless": "cypress run",

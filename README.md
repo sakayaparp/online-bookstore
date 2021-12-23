@@ -3,10 +3,20 @@
 ## Getting Started
 
 ```shell
+# start kafka stack
+docker-compose -f docker-compose.kafka.yml up -d
+
+# start application stack
 docker-compose up -d
 
 # init database
 npx lerna run db:init
+
+http://localhost:3000
+
+# start poller
+cd packages/poller
+npm run start:dev
 ```
 
 ## Create a new package
