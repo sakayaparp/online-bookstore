@@ -17,6 +17,10 @@ http://localhost:3000
 # start poller
 cd packages/poller
 npm run start:dev
+
+# start consumer
+cd packages/cart/subscriptions
+npx ts-node index.ts
 ```
 
 ## Create a new package
