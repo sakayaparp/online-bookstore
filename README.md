@@ -28,6 +28,9 @@ npx ts-node index.ts
 # start container
 make start
 
+# stop container
+make stop
+
 # start poller
 make poller
 
