@@ -6,9 +6,10 @@ const Home: NextPage = () => {
   const [books, setBook] = useState([]);
 
   useEffect(() => {
-    const url = "http://localhost:3001/api/books";
-
-    const fetchData = async () => {
+      let url: string;
+      url = process.env.NODE_ENV == "test" ? "http://inventory_api:3001/api/books" : "http://localhost:3001/api/books";
+      console.log('send request to url: ', url);
+      const fetchData = async () => {
       try {
         const response = await fetch(url);
         const json = await response.json();
