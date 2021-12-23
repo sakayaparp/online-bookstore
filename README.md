@@ -23,6 +23,18 @@ cd packages/cart/subscriptions
 npx ts-node index.ts
 ```
 
+#### Alternatively,
+```shell
+# start container
+make start
+
+# start poller
+make poller
+
+# start consumer
+make consumer
+```
+
 ## Create a new package
 
 ```shell
